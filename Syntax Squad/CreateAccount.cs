@@ -9,8 +9,27 @@ namespace Syntax_Squad
     internal class CreateAccount
     {
 
+        public string accountName;
         public string accountType;
 
+        private string AccountName()
+        {
+            bool chooseName = true;
+            
+            while (chooseName)
+            {
+                Console.Clear();
+                Console.WriteLine("\n\t Write the name of the account:");
+                string accName = Console.ReadLine();
+
+                if (accName == null)
+                {
+                    Console.WriteLine("That is not a calid account name");
+                }else chooseName = false;
+            }
+            return accountName;
+        }
+        
         private string AccountType()
         {
             int accType;
