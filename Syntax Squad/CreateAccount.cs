@@ -8,9 +8,104 @@ namespace Syntax_Squad
 {
     internal class CreateAccount
     {
-
+        
+        
         public string accountName;
         public string accountType;
+        public int accountNumber;
+        public string accountCurrency;
+        public double accountBalance = 0;
+        public string accountOwner;
+
+        private BankAccount createdAccount;
+
+
+        public void MakeAccount()
+        {
+            bool create = true;
+
+            while (create)
+            {
+                AccountName();
+                AccountNumber();
+                AccountCurrency();
+                AccountType();
+
+                Console.Clear();
+                Console.WriteLine($"\n\t {accountName} : {accountType} : {accountCurrency}" +
+                    $"Are you sure this is the correct? Y/N");
+                string correct = Console.ReadLine();
+
+                if(correct.ToLower() == "y" || correct.ToLower() == "yes")
+                {
+                    CreateNewAccount();
+                    create = false;
+                }
+            }
+        }
+
+        public void CreateNewAccount()
+        {
+            createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner, accountCurrency, accountBalance);
+        }
+
+        private string AccountCurrency()
+        {
+            int accCurrency;
+            bool chooseCurrency = true;
+
+            while (chooseCurrency)
+            {
+                Console.Clear();
+                Console.WriteLine("\n\t Choose the currency for the account:" +
+                    "\n 1 : SEK" +
+                    "\n 2 : GBP" +
+                    "\n 3 : EUR" +
+                    "\n Type in the number of the currency you want.");
+
+                if (int.TryParse(accountType, out accCurrency))
+                {
+                    if (accCurrency > 0 && accCurrency < 5)
+                    {
+                        switch (accCurrency)
+                        {
+                            case 1:
+                                accountCurrency = "SEK";
+                                return accountCurrency;
+                            case 2:
+                                accountCurrency = "GBP";
+                                return accountCurrency;
+                            case 3:
+                                accountCurrency = "EUR";
+                                return accountCurrency;
+                            
+                        }
+                    }
+                }
+                else Console.WriteLine("That is not a valid input");
+            }
+            return accountCurrency;
+        }
+
+        private int AccountNumber()
+        {
+            Random rng = new Random();
+            bool getAccountNumber = true;
+
+            while (getAccountNumber)
+            {
+                accountNumber = rng.Next(0, 9999);
+
+                foreach (BankAccount account in BankAccount.bankAccounts)
+                {
+                    if(account.AccountNumber != accountNumber)
+                    {
+                        getAccountNumber = false;
+                    }
+                }
+            }
+            return accountNumber;
+        }
 
         private string AccountName()
         {
@@ -25,7 +120,8 @@ namespace Syntax_Squad
                 if (accName == null)
                 {
                     Console.WriteLine("That is not a calid account name");
-                }else chooseName = false;
+                    Console.ReadKey();
+                }   else chooseName = false;
             }
             return accountName;
         }
@@ -65,11 +161,8 @@ namespace Syntax_Squad
                                 return accountType;
                         }
                     }
-
-                }else Console.WriteLine("That is not a valid input");
+                }   else Console.WriteLine("That is not a valid input");
             }
-
-
             return accountType;
         }
 
