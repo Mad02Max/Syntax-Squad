@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace Syntax_Squad
 {
     public class BankAccount
     {
+
         public string AccountName { get; set; }
         public string AccountType { get; set; }
         public int AccountNumber { get; set; }
@@ -53,6 +55,16 @@ namespace Syntax_Squad
             bankAccounts.Add(Acc8);
             bankAccounts.Add(Acc9);
 
+           
+        }
+        public List<BankAccount> GetList() 
+        { 
+            return bankAccounts; 
+        }
+
+        public void SetList(List<BankAccount> addBankAccounts)
+        {
+            bankAccounts = addBankAccounts;
         }
     }
 }
