@@ -15,7 +15,7 @@ namespace Syntax_Squad
         {
             exchangeRates = new Dictionary<string, decimal>
             {
-                {"PUND", 0.076m},
+                {"GBP", 0.076m},
                 {"EUR", 0.088m},
                 {"SEK", 1.00m},
             };
