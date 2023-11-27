@@ -35,8 +35,8 @@ namespace Syntax_Squad
             BankAccount Acc2 = new BankAccount("Sparkonto","Savings", 1002, "Anas Qlok", "SEK", 240000.56);
             BankAccount Acc3 = new BankAccount("Gammelmans konto","Pension", 1003, "Anas Qlok", "SEK", 600000.40);
 
-            BankAccount Acc4 = new BankAccount("Kreditkort","Card", 2004, "Simon Ståhl", "PUND", 34000.34);
-            BankAccount Acc5 = new BankAccount("Sparingskonto","Savings", 2005, "Simon Ståhl", "PUND", 4000.34);
+            BankAccount Acc4 = new BankAccount("Kreditkort","Card", 2004, "Simon Ståhl", "GBP", 34000.34);
+            BankAccount Acc5 = new BankAccount("Sparingskonto","Savings", 2005, "Simon Ståhl", "GBP", 4000.34);
 
             BankAccount Acc6 = new BankAccount("Fun card","Card", 3006, "Elon Musk", "SEK", 5600000.60);
             BankAccount Acc7 = new BankAccount("Savings fun account","Savings", 3007, "Elon Musk", "SEK", 6000000.43);
