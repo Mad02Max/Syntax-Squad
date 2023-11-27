@@ -26,17 +26,17 @@ namespace Syntax_Squad
             if (exchangeRates.ContainsKey(currencyCode))
             {
                 exchangeRates[currencyCode] = newRate;
-                Console.WriteLine($"Växelkurs för {currencyCode} har ändrats till {newRate}");
+                Console.WriteLine($"Exchange rate for {currencyCode} has been changed to {newRate}");
             }
             else
             {
-                Console.WriteLine($"Valutan {currencyCode} finns inte med i systemet");
+                Console.WriteLine($"Currency {currencyCode} was not found in the system.");
             }
         }
 
         public void DisplayExhangeRates()
         {
-            Console.WriteLine("Aktuella Valutor att välja emellan:");
+            Console.WriteLine("Currencies to choose from:");
             foreach (var rate in exchangeRates)
             {
                 Console.WriteLine($"{rate.Key}: {rate.Value}");
