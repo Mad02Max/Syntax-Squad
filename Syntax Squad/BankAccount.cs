@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace Syntax_Squad
 {
     public class BankAccount
     {
+
         public string AccountName { get; set; }
         public string AccountType { get; set; }
         public int AccountNumber { get; set; }
@@ -35,8 +37,8 @@ namespace Syntax_Squad
             BankAccount Acc2 = new BankAccount("Sparkonto","Savings", 1002, "Anas Qlok", "SEK", 240000.56);
             BankAccount Acc3 = new BankAccount("Gammelmans konto","Pension", 1003, "Anas Qlok", "SEK", 600000.40);
 
-            BankAccount Acc4 = new BankAccount("Kreditkort","Card", 2004, "Simon Ståhl", "PUND", 34000.34);
-            BankAccount Acc5 = new BankAccount("Sparingskonto","Savings", 2005, "Simon Ståhl", "PUND", 4000.34);
+            BankAccount Acc4 = new BankAccount("Kreditkort","Card", 2004, "Simon Ståhl", "GBP", 34000.34);
+            BankAccount Acc5 = new BankAccount("Sparingskonto","Savings", 2005, "Simon Ståhl", "GBP", 4000.34);
 
             BankAccount Acc6 = new BankAccount("Fun card","Card", 3006, "Elon Musk", "SEK", 5600000.60);
             BankAccount Acc7 = new BankAccount("Savings fun account","Savings", 3007, "Elon Musk", "SEK", 6000000.43);
@@ -53,6 +55,16 @@ namespace Syntax_Squad
             bankAccounts.Add(Acc8);
             bankAccounts.Add(Acc9);
 
+           
+        }
+        public List<BankAccount> GetList() 
+        { 
+            return bankAccounts; 
+        }
+
+        public void SetList(List<BankAccount> addBankAccounts)
+        {
+            bankAccounts = addBankAccounts;
         }
     }
 }
