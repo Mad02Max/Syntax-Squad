@@ -14,7 +14,7 @@ namespace Syntax_Squad
         public  void LogIn()
         {          
             List<User> allUsers = new List<User>();
-            allUsers.AddRange(RegularUser.GetRegular());
+            allUsers.AddRange(RegularUser.regularUsers());
             allUsers.AddRange(Admin.GetAdmins());
 
             int attempts = 0;           
@@ -37,11 +37,16 @@ namespace Syntax_Squad
 
                     if (userTryLogin.IsAdmin)
                     {
-                        //AdminMenu();
+                        AdminMenu adminMenu = new AdminMenu();
+                        adminMenu.ShowMenu(userTryLogin);
+                        userTryLogin.IsLoggedIn = true;
                     }
                     else
                     {
-                       //RegularUserMenu();
+                        UserMenu userMenu = new UserMenu();
+                        userMenu.ShowMenu(userTryLogin);
+                        IsLoggedIn = true;
+                       
                     }
                     return;
                 }
