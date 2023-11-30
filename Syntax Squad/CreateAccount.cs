@@ -92,7 +92,7 @@ namespace Syntax_Squad
 
             while (getAccountNumber)
             {
-                accountNumber = rng.Next(0, 9999);
+                accountNumber = rng.Next(1000, 9999);
 
                 foreach (BankAccount account in BankAccount.bankAccounts)
                 {
