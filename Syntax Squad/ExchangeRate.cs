@@ -9,7 +9,7 @@ namespace Syntax_Squad
     public class ExchangeRateManager
     {
 
-        private Dictionary<string, decimal> exchangeRates;
+        public Dictionary<string, decimal> exchangeRates;
 
         public ExchangeRateManager()
         {
