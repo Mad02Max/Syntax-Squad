@@ -31,6 +31,7 @@ namespace Syntax_Squad
 
             Console.WriteLine($"\nYou can only take out a loan that is 5 times bigger than your total balance" +
                 $"\n\t Your toatal balance is {toaltalMoneyAmount}" +
+                $"\n\t And the loan will have a 4.5% intrest" +
                 $"\n How big of a loan do you want to take?");
 
             double.TryParse(Console.ReadLine(), out loanSize);
