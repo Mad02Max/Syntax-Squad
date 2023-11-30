@@ -10,20 +10,20 @@ namespace Syntax_Squad
     public class Admin : User
     {
 
-        public Admin(string name, string password)
+        public Admin(string name, string password, int userId)
         {
+            UserId = userId;
             Name = name;
             Password = password;
             IsAdmin = true;
 
         }
-        public static List<Admin> GetAdmins()
+        public static List<Admin> ExistingAdmins()
         {
             var admins = new List<Admin>();
-            admins.Add(new Admin("Syntax", "Squad"));
+            admins.Add(new Admin("Syntax", "Squad", 1337));
 
             return admins;
-
         }
 
 
