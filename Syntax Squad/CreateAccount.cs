@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,12 +10,14 @@ namespace Syntax_Squad
     internal class CreateAccount
     {       
         
-        public string accountName;
-        public string accountType;
-        public int accountNumber;
-        public string accountCurrency;
-        public double accountBalance = 0;
-        public string accountOwner;
+        private string accountName;
+        private string accountType;
+        private int accountNumber;
+        private Login userID = new Login();
+        private int userId;
+        private string accountCurrency;
+        private double accountBalance = 0;
+        private string accountOwner;
 
         private BankAccount createdAccount;
 
@@ -42,10 +45,23 @@ namespace Syntax_Squad
             }
         }
 
-        public void CreateNewAccount()
+        private void CreateNewAccount()
         {
-            createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner, accountCurrency, accountBalance);
+            createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner,userID.GetUserID(), accountCurrency, accountBalance);
             BankAccount.bankAccounts.Add(createdAccount);
+        }
+
+        private void GetOwner()
+        {
+            List<RegularUser> userList = RegularUser.regularUser;
+
+            foreach (RegularUser user in userList)
+            {
+                if(user.UserId == userID.GetUserID())
+                {
+                    accountOwner += user.Name;
+                }
+            }
         }
 
         private string AccountCurrency()

@@ -8,30 +8,22 @@ namespace Syntax_Squad
 {
     internal class Loan
     {
+
+        private double loanAmount {  get; set; }
+        private int accountID { get; set; }
+
         private double toaltalMoneyAmount;
-        private int accountID;
+        private Login userID = new Login();
         private List<BankAccount> account = BankAccount.bankAccounts;
         private double loanSize;
         private List<Loan> loans = new List<Loan>();
-
-
-        public Loan(double loanS, int accountId)
-        {
-
-            this.accountID = accountId;
-            this.loanSize = loanS;
-
-        }
-
-
-
 
         public void TakeOutLoan()
         {
             Console.Clear();
             foreach (BankAccount bankAccount in account)
             {
-                if (bankAccount.ID == accountID)
+                if (bankAccount.ID == userID.UserId)
                 {
                     toaltalMoneyAmount += bankAccount.Balance;
                 }
@@ -45,7 +37,7 @@ namespace Syntax_Squad
 
             if(loanSize <= toaltalMoneyAmount * 5)
             {
-                AllLoanes(loanSize, accountID);
+                AllLoanes(loanSize, userID.UserId);
             }else Console.WriteLine("You can not borrow that much money with the amount of money you have.");
         }
 
@@ -55,9 +47,9 @@ namespace Syntax_Squad
             Console.Clear();
             foreach (Loan loan in loans)
             {
-                if (loan.accountID == accountID)
+                if (loan.accountID == userID.GetUserID())
                 {
-                    Console.Write($"\n\t {loan}");
+                    Console.Write($"\n\t You have a loan on: {loan.loanAmount}");
                 }
             }
 
@@ -66,9 +58,12 @@ namespace Syntax_Squad
         public void AllLoanes(double loanS, int accountId)
         {
 
-            Loan loan1 = new Loan(loanS, accountId);
-
-            loans.Add(loan1);
+            Loan newLoan = new Loan
+            {
+                loanAmount = loanS,
+                accountID = accountId
+            };
+            loans.Add(newLoan);
 
         }
 
