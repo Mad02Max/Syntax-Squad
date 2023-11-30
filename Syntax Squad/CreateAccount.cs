@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Syntax_Squad
 {
     internal class CreateAccount
-    {
-        
+    {       
         
         public string accountName;
         public string accountType;
@@ -18,7 +17,6 @@ namespace Syntax_Squad
         public string accountOwner;
 
         private BankAccount createdAccount;
-
 
         public void MakeAccount()
         {
@@ -47,6 +45,7 @@ namespace Syntax_Squad
         public void CreateNewAccount()
         {
             createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner, accountCurrency, accountBalance);
+            BankAccount.bankAccounts.Add(createdAccount);
         }
 
         private string AccountCurrency()
@@ -77,8 +76,7 @@ namespace Syntax_Squad
                                 return accountCurrency;
                             case 3:
                                 accountCurrency = "EUR";
-                                return accountCurrency;
-                            
+                                return accountCurrency;                           
                         }
                     }
                 }
