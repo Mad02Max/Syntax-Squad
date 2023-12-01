@@ -21,7 +21,7 @@ namespace Syntax_Squad
                 switch (userInput)
                 {
                     case "1":
-                        //add user metod kommer här
+                        Admin.AddUser(user);
                         validChoice = true;
                         break;
                     case "2":
@@ -41,9 +41,6 @@ namespace Syntax_Squad
             } while (!validChoice);
             
             
-
-            
-
         }
     }
 }

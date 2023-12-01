@@ -37,15 +37,11 @@ namespace Syntax_Squad
 
                     if (userTryLogin.IsAdmin)
                     {
-                        AdminMenu adminMenu = new AdminMenu();
-                        adminMenu.ShowMenu(userTryLogin);
-                        userTryLogin.IsLoggedIn = true;
+                        
                     }
                     else
                     {
-                        UserMenu userMenu = new UserMenu();
-                        userMenu.ShowMenu(userTryLogin);
-                        IsLoggedIn = true;
+                        
                        
                     }
                     return;
