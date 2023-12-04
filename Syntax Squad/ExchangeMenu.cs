@@ -7,35 +7,32 @@ using System.Threading.Tasks;
 namespace Syntax_Squad
 {
     //Noah SUT23
-    public class LoanMenu : UserMenu
+    public class ExchangeMenu : AdminMenu
     {
-        private bool run = true;
         public override void ShowMenu(User user)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Loan loan = new Loan();
+            bool validChoice = false;
             do
             {
-                Console.WriteLine("\t---|| Loan Menu ||---");
-                Console.WriteLine("\t1: Take loan \n\t2: See Loans \n\t3: Return to menu");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("---|| Exchange Menu ||---");
+                Console.WriteLine("\t1: Change Exchange Rates \n\t2: Display Exchange Rates");
 
                 string userInput = Console.ReadLine();
-
                 switch (userInput)
                 {
                     case "1":
-                        loan.TakeOutLoan();
                         break;
                     case "2":
-                        loan.SeeLoans();
-                        break;
-                    case "3":
-                        run = false;
                         break;
                     default:
+                        Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
                 }
-            } while (run);
+
+
+            } while (!validChoice);
+
         }
     }
 }

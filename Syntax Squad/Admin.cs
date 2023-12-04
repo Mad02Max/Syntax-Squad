@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class Admin : User
     {
-
+        public static List<Admin> Admins = new List<Admin>();
         public Admin(string name, string password, int userId)
         {
             UserId = userId;
@@ -18,13 +19,11 @@ namespace Syntax_Squad
             IsAdmin = true;
 
         }
-        public static List<Admin> ExistingAdmins()
+        public static void ExistingAdmins()
         {
-            var admins = new List<Admin>();
-            admins.Add(new Admin("Syntax", "Squad", 1337));
-
-            return admins;
+            Admins.Add(new Admin("Syntax", "Squad", 1337));
         }
+        
 
 
 

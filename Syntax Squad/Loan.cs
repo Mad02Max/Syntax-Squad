@@ -34,7 +34,6 @@ namespace Syntax_Squad
                     toaltalMoneyAmount += bankAccount.Balance;
                 }
             }
-
             Console.WriteLine($"\nYou can only take out a loan that is 5 times bigger than your total balance" +
                 $"\n\t Your toatal balance is {toaltalMoneyAmount}" +
                 $"\n\t And the loan will have a 4.5% intrest" +
@@ -53,7 +52,6 @@ namespace Syntax_Squad
         /// </summary>
         public void SeeLoans()
         {
-
             Console.Clear();
             foreach (Loan loan in loans)
             {
@@ -62,7 +60,6 @@ namespace Syntax_Squad
                     Console.Write($"\n\t You have a loan on: {loan.loanAmount}");
                 }
             }
-
         }
 
         /// <summary>
@@ -72,14 +69,12 @@ namespace Syntax_Squad
         /// <param name="accountId"></param>
         public void AllLoanes(double loanS, int accountId)
         {
-
             Loan newLoan = new Loan
             {
                 loanAmount = loanS,
                 accountID = accountId
             };
             loans.Add(newLoan);
-
         }
 
     }

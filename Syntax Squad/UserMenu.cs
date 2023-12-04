@@ -6,39 +6,54 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class UserMenu : Menu
     {
         public override void ShowMenu(User user)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\t---|| User Menu ||---");
-            Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
-
-            string userInput = Console.ReadLine();
-
-            switch (userInput)
+            bool validChoice = false;
+            do
             {
-                case "1":
-                    ShowUserAccounts(user);
-                    break;
-                case "2":
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\t---|| User Menu ||---");
+                Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
 
-                    break;
-                case "3":
-                    CreateAccount createAccount = new CreateAccount();
-                    createAccount.MakeAccount();
-                    break;
-                case "4":
-                    break;
-                case "5":
-                    break;
-                default:
-                    break;
+                string userInput = Console.ReadLine();
+
+                switch (userInput)
+                {
+                    case "1":
+                        ShowUserBankAccounts(user);
+                        validChoice = true;
+                        break;
+                    case "2":
+                        TransferMenu transferMenu = new TransferMenu();
+                        transferMenu.ShowMenu(user);
+                        validChoice = true;
+                        break;
+                    case "3":
+                        CreateAccount createAccount = new CreateAccount();
+                        createAccount.MakeAccount();
+                        validChoice = true;
+                        break;
+                    case "4":
+                        LoanMenu loanMenu = new LoanMenu();
+                        loanMenu.ShowMenu(user);
+                        validChoice = true;
+                        break;
+                    case "5":
+                        //logout metod kommer här
+                        break;
+                    default:
+                        Console.WriteLine("Wrong input, choose between one of the menu options");
+                        break;
 
 
-            }
+                }
+
+            } while (!validChoice);
         }
-        private static void ShowUserAccounts(User user)
+        private static void ShowUserBankAccounts(User user)
         {
             while (true)
             {
@@ -58,7 +73,7 @@ namespace Syntax_Squad
                 Console.WriteLine("Press 'M' to return to menu ");
 
                 string userInput = Console.ReadLine();
-                if(userInput.ToUpper() != "M")
+                if (userInput.ToUpper() != "M")
                 {
                     continue;
                 }
