@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class User
     {
         public int UserId { get; set; }

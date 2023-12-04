@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace Syntax_Squad
 {
     //Noah SUT23
-    public class TransferMenu : Menu
+    public class TransferMenu : UserMenu
     {
         public override void ShowMenu(User user)
         {
+
             bool validChoice = false;
             do
             {
