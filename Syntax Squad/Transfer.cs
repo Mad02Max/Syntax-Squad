@@ -10,10 +10,9 @@ namespace Syntax_Squad
     {
         //Simon Ståhl SUT23
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
-        private List<Login> TransferPWList = Login.allUsers;
-        
+        private Login userID = new Login();
 
-                
+
         public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
         {
 
@@ -35,13 +34,21 @@ namespace Syntax_Squad
         /// PIN behövs inte för egen överföring då vi loggat in en gång redan.
         /// 
         /// </summary>
-        
+
         public void TransferBetweenOwnAccounts(int fromAccountNumber, int toAccountNumber, double amount, string Userpassword)
         {
+            // lista för konton här
+
+            Console.WriteLine("Choose Account to transfer from: ");
+            fromAccountNumber = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Choose Account to transfer to: ");
+            toAccountNumber = int.Parse(Console.ReadLine());
+
             var fromAccount = GetBankAccount(fromAccountNumber);
             var toAccount = GetBankAccount(toAccountNumber);
 
-            if (fromAccount.Balance < amount )
+            if (fromAccount.Balance < amount)
             {
                 Console.WriteLine("Insufficient funds.");
                 return;
@@ -49,8 +56,8 @@ namespace Syntax_Squad
             fromAccount.Balance -= amount;
             toAccount.Balance += amount;
 
-            Console.WriteLine($"Transfer successful. New balance for {fromAccountNumber}: {fromAccount.Balance}");
-            Console.WriteLine($"New balance for {toAccountNumber}: {toAccount.Balance}");
+            Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
+            Console.WriteLine($"New balance for {toAccount.AccountName}: {toAccount.Balance}");
 
         }
 
@@ -58,14 +65,26 @@ namespace Syntax_Squad
         /// Metod för överföring från egna konton till andra användares konton. 
         /// PIN kontroll för att säkerställa att man vill föra över till annan användare. 
         /// </summary>
-       
-        public void TransferBetweenOtherAccounts(int fromAccountNumber, int toAccountNumber, double amount, string Userpassword)
+
+        public void TransferBetweenOtherAccounts(int fromAccountNumber, int toAccountNumber, double amount)
         {
+            // lista för konton här
+
+            Console.WriteLine("Choose Account to transfer from: ");
+            fromAccountNumber = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Choose Account to transfer to: ");
+            toAccountNumber = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the amount you wish to transfer: ");
+            amount = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please enter your Pin code to confirm the transaction:");
+            string password = Console.ReadLine();
             var fromAccount = GetBankAccount(fromAccountNumber);
             var toAccount = GetBankAccount(toAccountNumber);
-            string password;
 
-            if (fromAccount == null || toAccount == null && password == Userpassword)
+            if (fromAccount == null || toAccount == null || password != userID.Password) // fungerar verkligen detta?????
             {
                 Console.WriteLine("Invalid account number.");
                 return;
@@ -77,18 +96,24 @@ namespace Syntax_Squad
                 return;
             }
 
-            fromAccount.Balance -= amount;
-            toAccount.Balance += amount;
+            if (fromAccount != null && toAccount != null && password == userID.Password)
+            {
+                fromAccount.Balance -= amount;
+                toAccount.Balance += amount;
+                Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
 
-            Console.WriteLine($"Transfer successful. New balance for {fromAccountNumber}: {fromAccount.Balance:C}");
-            
+            }
+
 
         }
+
 
         public BankAccount GetBankAccount(int AccountNumber)
         {
             return BankAccount.bankAccounts.Find(a => a.AccountNumber == AccountNumber);
         }
-               
+
+       
+
     }
 }
