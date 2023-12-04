@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class AdminMenu : Menu
     {
         public override void ShowMenu(User user)
@@ -21,19 +22,20 @@ namespace Syntax_Squad
                 switch (userInput)
                 {
                     case "1":
-                        Admin.AddUser(user);
+                        AdminFunctions.AddUser(user);
                         validChoice = true;
                         break;
                     case "2":
-                        //currency menu
+                        ExchangeMenu exchangeMenu = new ExchangeMenu();
+                        exchangeMenu.ShowMenu(user);
                         validChoice = true;
                         break;
                     case "3":
-                        //visa alla användare kommer här
+                        AdminFunctions.ShowCurrentUsers();
                         validChoice = true;
                         break;
                     default:
-                        Console.WriteLine("Choose between 1, 2 or 3 please");
+                        Console.WriteLine("Wrong input, choose between of the menu options");
                         break;
 
                 }

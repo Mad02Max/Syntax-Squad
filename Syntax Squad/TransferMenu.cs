@@ -7,29 +7,28 @@ using System.Threading.Tasks;
 namespace Syntax_Squad
 {
     //Noah SUT23
-    public class LoanMenu : UserMenu
+    public class TransferMenu : Menu
     {
         public override void ShowMenu(User user)
         {
             bool validChoice = false;
-            
             do
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\t---|| Loan menu ||---");
-                Console.WriteLine("\t1: Take Loan \n\t2: See Loans");
+                Console.WriteLine("---|| Transfer Menu ||---");
+                Console.WriteLine("\t1: Withdraw money \n\t2: Transfer between own accounts \n\t3: Transfer to another user");
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "1":
-                        
-                        validChoice = true;
+
                         break;
                     case "2":
-                        //See loans metod kommer här
-                        validChoice = true;
+
                         break;
+                    case "3":
+
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
@@ -37,7 +36,6 @@ namespace Syntax_Squad
 
 
             } while (!validChoice);
-
         }
     }
 }
