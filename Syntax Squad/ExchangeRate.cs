@@ -8,7 +8,7 @@ namespace Syntax_Squad
 {
     public class ExchangeRateManager
     {
-
+        //Simon Ståhl SUT23
         public Dictionary<string, decimal> exchangeRates;
 
         public ExchangeRateManager()

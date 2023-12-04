@@ -8,15 +8,17 @@ namespace Syntax_Squad
 {
     public class Transfer
     {
-        
+        //Simon Ståhl SUT23
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
+        private List<Login> TransferPWList = Login.allUsers;
         
-       
+
+                
         public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
         {
 
             var fromAccount = GetBankAccount(fromAccountNumber);
-            if (fromAccount.Balance == null || fromAccount.Balance < 0 && Userpassword == password)
+            if (fromAccount.Balance == null || fromAccount.Balance < 0 && password == Userpassword)
             {
                 Console.WriteLine("Insufficient fund on selected Account.");
                 return;
@@ -27,6 +29,13 @@ namespace Syntax_Squad
             Console.WriteLine($"Remaining Balance for {fromAccount}: {fromAccount.Balance}");
         }
 
+
+        /// <summary>
+        /// Metod för överföring emellan egna konton. 
+        /// PIN behövs inte för egen överföring då vi loggat in en gång redan.
+        /// 
+        /// </summary>
+        
         public void TransferBetweenOwnAccounts(int fromAccountNumber, int toAccountNumber, double amount, string Userpassword)
         {
             var fromAccount = GetBankAccount(fromAccountNumber);
@@ -45,6 +54,11 @@ namespace Syntax_Squad
 
         }
 
+        /// <summary>
+        /// Metod för överföring från egna konton till andra användares konton. 
+        /// PIN kontroll för att säkerställa att man vill föra över till annan användare. 
+        /// </summary>
+       
         public void TransferBetweenOtherAccounts(int fromAccountNumber, int toAccountNumber, double amount, string Userpassword)
         {
             var fromAccount = GetBankAccount(fromAccountNumber);
