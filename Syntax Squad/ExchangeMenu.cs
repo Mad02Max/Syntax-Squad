@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class ExchangeMenu : AdminMenu
     {
         public override void ShowMenu(User user)
@@ -25,7 +26,7 @@ namespace Syntax_Squad
                     case "2":
                         break;
                     default:
-                        Console.WriteLine("Choose 1 or 2 please");
+                        Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
                 }
 
