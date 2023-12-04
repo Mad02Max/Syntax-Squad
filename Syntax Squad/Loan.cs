@@ -23,9 +23,6 @@ namespace Syntax_Squad
 
         }
 
-
-
-
         public void TakeOutLoan()
         {
             Console.Clear();

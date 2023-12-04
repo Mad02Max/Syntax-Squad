@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
-    public class LoanMenu : UserMenu
+    public class ExchangeMenu : AdminMenu
     {
         public override void ShowMenu(User user)
         {
@@ -14,22 +14,18 @@ namespace Syntax_Squad
             do
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\t---|| Loan menu ||---");
-                Console.WriteLine("\t1: Take Loan \n\t2: See Loans");
+                Console.WriteLine("---|| Exchange Menu ||---");
+                Console.WriteLine("\t1: Change Exchange Rates \n\t2: Display Exchange Rates");
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "1":
-                        
-                        validChoice = true;
                         break;
                     case "2":
-                        //See loans metod kommer här
-                        validChoice = true;
                         break;
                     default:
-                        Console.WriteLine("choose 1 or 2 please");
+                        Console.WriteLine("Choose 1 or 2 please");
                         break;
                 }
 
