@@ -23,7 +23,7 @@ namespace Syntax_Squad
                 switch (userInput)
                 {
                     case "1":
-                        ShowUserBankAccounts(user);
+                        BankAccount.ShowUserBankAccounts(user);
                         validChoice = true;
                         break;
                     case "2":
@@ -53,39 +53,6 @@ namespace Syntax_Squad
 
             } while (!validChoice);
         }
-        private static void ShowUserBankAccounts(User user)
-        {
-            while (true)
-            {
-                Console.WriteLine($"--- Accounts for {user.Name} ---");
-
-                foreach (var account in BankAccount.bankAccounts)
-                {
-                    if (account.Owner == user.Name)
-                    {
-                        Console.WriteLine($"Account Name: {account.AccountName}");
-                        Console.WriteLine($"Account Type: {account.AccountType}");
-                        Console.WriteLine($"Account number: {account.AccountNumber}");
-                        Console.WriteLine($"Currency: {account.Currency}");
-                        Console.WriteLine($"Balance: {account.Balance}");
-                    }
-                }
-                Console.WriteLine("Press 'M' to return to menu ");
-
-                string userInput = Console.ReadLine();
-                if (userInput.ToUpper() != "M")
-                {
-                    continue;
-                }
-                else
-                {
-                    break;
-                }
-
-            }
-
-
-
-        }
+       
     }
 }
