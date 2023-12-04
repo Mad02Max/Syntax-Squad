@@ -15,5 +15,21 @@ namespace Syntax_Squad
         public bool IsAdmin { get; set; } = false;
         public bool IsLoggedIn { get; set; } = false;
 
+        public List<User> AllTheUsers = new List<User>();
+
+        public static List<User> AllUsers()
+        {
+            var users = new List<User>
+            {
+            new Admin("Syntax", "Squad", 1337),
+            new RegularUser("Börje", "kaffe123", 101),
+            new RegularUser("Stefan", "betong321", 102),
+            new RegularUser("Åke", "snus444", 103)
+
+            };
+
+            return users;
+        }
+
     }
 }

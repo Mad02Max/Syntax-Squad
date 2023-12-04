@@ -15,15 +15,17 @@ namespace Syntax_Squad
             UserId = userId;
             Name = name;
             Password = password;
+            
         }
         public static void ExistingUsers()
         {
             regularUsers.Add(new RegularUser("Börje", "kaffe123", 101));
             regularUsers.Add(new RegularUser("Stefan", "betong321", 102));
             regularUsers.Add(new RegularUser("Åke", "snus444", 103));
-
         }
 
-
     }
+
+
 }
+
