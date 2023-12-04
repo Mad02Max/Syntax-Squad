@@ -11,6 +11,7 @@ namespace Syntax_Squad
     {
         public override void ShowMenu(User user)
         {
+            ExchangeRateManager manager = new ExchangeRateManager();
             bool validChoice = false;
             do
             {
@@ -26,8 +27,7 @@ namespace Syntax_Squad
                         validChoice = true;
                         break;
                     case "2":
-                        ExchangeMenu exchangeMenu = new ExchangeMenu();
-                        exchangeMenu.ShowMenu(user);
+                        manager.ChangeExchangeRates();
                         validChoice = true;
                         break;
                     case "3":
@@ -35,7 +35,7 @@ namespace Syntax_Squad
                         validChoice = true;
                         break;
                     default:
-                        Console.WriteLine("Wrong input, choose between of the menu options");
+                        Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
 
                 }
