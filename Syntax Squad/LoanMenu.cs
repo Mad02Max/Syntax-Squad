@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
-    //Noah SUT23
+    //Noah/Max SUT23
     public class LoanMenu : UserMenu
     {
         private bool run = true;
