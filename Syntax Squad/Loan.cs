@@ -9,6 +9,8 @@ namespace Syntax_Squad
     internal class Loan
     {
 
+        // Max SUT23
+
         private double loanAmount {  get; set; }
         private int accountID { get; set; }
 
@@ -17,7 +19,11 @@ namespace Syntax_Squad
         private List<BankAccount> account = BankAccount.bankAccounts;
         private double loanSize;
         private List<Loan> loans = new List<Loan>();
+        
 
+        /// <summary>
+        /// This method checks how big of a loan the user wants and if they are eligable for it
+        /// </summary>
         public void TakeOutLoan()
         {
             Console.Clear();
@@ -42,6 +48,9 @@ namespace Syntax_Squad
             }else Console.WriteLine("You can not borrow that much money with the amount of money you have.");
         }
 
+        /// <summary>
+        /// Makes it so the user can see what outgoing loans they have
+        /// </summary>
         public void SeeLoans()
         {
 
@@ -56,6 +65,11 @@ namespace Syntax_Squad
 
         }
 
+        /// <summary>
+        /// Adds the new loan to a list were all loans are keept
+        /// </summary>
+        /// <param name="loanS"></param>
+        /// <param name="accountId"></param>
         public void AllLoanes(double loanS, int accountId)
         {
 
