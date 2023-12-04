@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class RegularUser : User
     {
         public static List<RegularUser> regularUsers = new List<RegularUser>();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Syntax_Squad
 {
     //Noah SUT23
-    public class AdminMenu : Menu
+    public class TransferMenu : Menu
     {
         public override void ShowMenu(User user)
         {
@@ -15,34 +15,27 @@ namespace Syntax_Squad
             do
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\t---|| Admin Menu ||---");
-                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users");
+                Console.WriteLine("---|| Transfer Menu ||---");
+                Console.WriteLine("\t1: Withdraw money \n\t2: Transfer between own accounts \n\t3: Transfer to another user");
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "1":
-                        AdminFunctions.AddUser(user);
-                        validChoice = true;
+
                         break;
                     case "2":
-                        ExchangeMenu exchangeMenu = new ExchangeMenu();
-                        exchangeMenu.ShowMenu(user);
-                        validChoice = true;
+
                         break;
                     case "3":
-                        AdminFunctions.ShowCurrentUsers();
-                        validChoice = true;
-                        break;
-                    default:
-                        Console.WriteLine("Wrong input, choose between of the menu options");
-                        break;
 
+                    default:
+                        Console.WriteLine("Wrong input, choose between one of the menu options");
+                        break;
                 }
 
+
             } while (!validChoice);
-            
-            
         }
     }
 }

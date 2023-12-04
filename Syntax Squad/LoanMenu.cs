@@ -6,36 +6,36 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah/Max SUT23
     public class LoanMenu : UserMenu
     {
+        private bool run = true;
         public override void ShowMenu(User user)
         {
-            bool validChoice = false;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Loan loan = new Loan();
             do
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\t---|| Loan menu ||---");
-                Console.WriteLine("\t1: Take Loan \n\t2: See Loans");
+                Console.WriteLine("\t---|| Loan Menu ||---");
+                Console.WriteLine("\t1: Take loan \n\t2: See Loans \n\t3: Return to menu");
 
                 string userInput = Console.ReadLine();
+
                 switch (userInput)
                 {
                     case "1":
-                        
-                        validChoice = true;
+                        loan.TakeOutLoan();
                         break;
                     case "2":
-                        //See loans metod kommer här
-                        validChoice = true;
+                        loan.SeeLoans();
+                        break;
+                    case "3":
+                        run = false;
                         break;
                     default:
-                        Console.WriteLine("choose 1 or 2 please");
                         break;
                 }
-
-
-            } while (!validChoice);
-
+            } while (run);
         }
     }
 }

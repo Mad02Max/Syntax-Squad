@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class UserMenu : Menu
     {
         public override void ShowMenu(User user)
@@ -22,11 +23,12 @@ namespace Syntax_Squad
                 switch (userInput)
                 {
                     case "1":
-                        ShowUserAccounts(user);
+                        ShowUserBankAccounts(user);
                         validChoice = true;
                         break;
                     case "2":
-
+                        TransferMenu transferMenu = new TransferMenu();
+                        transferMenu.ShowMenu(user);
                         validChoice = true;
                         break;
                     case "3":
@@ -35,13 +37,15 @@ namespace Syntax_Squad
                         validChoice = true;
                         break;
                     case "4":
-
-
+                        LoanMenu loanMenu = new LoanMenu();
+                        loanMenu.ShowMenu(user);
                         validChoice = true;
                         break;
                     case "5":
+                        //logout metod kommer här
                         break;
                     default:
+                        Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
 
 
@@ -49,7 +53,7 @@ namespace Syntax_Squad
 
             } while (!validChoice);
         }
-        private static void ShowUserAccounts(User user)
+        private static void ShowUserBankAccounts(User user)
         {
             while (true)
             {
