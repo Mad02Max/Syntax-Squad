@@ -19,7 +19,7 @@ namespace Syntax_Squad
             bool validChoice = false;
             do
             {
-                Console.Clear();
+                
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\t---|| User Menu ||---");
                 Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
@@ -30,22 +30,27 @@ namespace Syntax_Squad
                 {
                     case "1":
                         BankAccount.ShowUserBankAccounts(user);
-                        validChoice = true;
+                        
                         break;
                     case "2":
                         transferMenu.ShowMenu(user);
-                        validChoice = true;
+                       
                         break;
                     case "3":
-                        createAccount.MakeAccount();
-                        validChoice = true;
+                        
+                        
+
+                        createAccount.MakeAccount(user);
+                       
+
                         break;
                     case "4":
                         loanMenu.ShowMenu(user);
-                        validChoice = true;
+                        
                         break;
                     case "5":
                         //logout metod kommer här
+                        validChoice = true;
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
