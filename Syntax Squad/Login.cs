@@ -11,13 +11,16 @@ namespace Syntax_Squad
     {
         private const int MaxAttempts = 3;
 
-        public  void LogIn()
-        {          
-            List<User> allUsers = new List<User>();
-            allUsers.AddRange(RegularUser.regularUsers());
-            allUsers.AddRange(Admin.GetAdmins());
+        
+        public void LogIn()
+        {
 
-            int attempts = 0;           
+            List<User> allUsers = new List<User>();
+            allUsers.AddRange(RegularUser.ExistingUsers());
+            allUsers.AddRange(Admin.ExistingAdmins());
+                
+
+            int attempts = 0;
 
             do
             {
@@ -38,11 +41,12 @@ namespace Syntax_Squad
                     if (userTryLogin.IsAdmin)
                     {
                         
+
                     }
                     else
                     {
-                        
-                       
+
+
                     }
                     return;
                 }
@@ -51,16 +55,16 @@ namespace Syntax_Squad
                     attempts++;
                     Console.WriteLine($"Incorrect username or password. Attempts left: {MaxAttempts - attempts}");
                 }
-            }while ( attempts < MaxAttempts );
+            } while (attempts < MaxAttempts);
             Console.WriteLine("Maximum login attempts reached. Account locked.");
 
-            
-            
+
+
         }
         public int GetUserID()
         {
             return UserId;
         }
-    
+
     }
 }
