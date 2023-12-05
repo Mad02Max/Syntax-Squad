@@ -29,7 +29,7 @@ namespace Syntax_Squad
             AccountName = accountName;
             AccountType = accountType;
             AccountNumber = accountNumber;
-            Owner = owner;
+            Owner = owner;           
             Currency = currency;
             Balance = balance;
             ID = iD;

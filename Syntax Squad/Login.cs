@@ -31,12 +31,14 @@ namespace Syntax_Squad
                 Console.WriteLine("Password: ");
                 string enterPassword = Console.ReadLine();
 
-                User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword); //
+                User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
 
                 if (userTryLogin != null)
                 {
                     Console.WriteLine("Login successful! press enter to continue to meny.");
                     Console.ReadKey();
+
+                    userTryLogin.IsLoggedIn = true;
 
                     if (userTryLogin.IsAdmin)
                     {
@@ -50,7 +52,7 @@ namespace Syntax_Squad
                         userMenu.ShowMenu(userTryLogin);
 
                     }
-                    return;
+                    
                 }
                 else
                 {
@@ -66,7 +68,7 @@ namespace Syntax_Squad
           /// Method to get user ID
           /// </summary>
         public int GetUserID()
-        {
+        {          
             return UserId;
         }
         /// <summary>
