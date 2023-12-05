@@ -42,7 +42,7 @@ namespace Syntax_Squad
                 {
 
                     RegularUser newUser = new RegularUser(newName, newPassword, newUserId);
-                    RegularUser.AllTheUsers.Add(newUser);
+                    User.AllTheUsers.Add(newUser);
 
                     Console.WriteLine($"New user {newName} was added by {user.Name}");
 
@@ -78,7 +78,7 @@ namespace Syntax_Squad
                     break;
                 }
 
-                foreach (var user in RegularUser.AllTheUsers)
+                foreach (var user in User.AllTheUsers)
                 {
                     Console.WriteLine($"{user.UserId} - {user.Name}");
 

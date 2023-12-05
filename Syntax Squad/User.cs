@@ -30,6 +30,14 @@ namespace Syntax_Squad
 
             return users;
         }
+        public static void ExistingUsers()
+        {
+            AllTheUsers.Add(new Admin("Syntax", "Squad", 1337));
+            AllTheUsers.Add(new RegularUser("Börje", "kaffe123", 101));
+            AllTheUsers.Add(new RegularUser("Stefan", "betong321", 102));
+            AllTheUsers.Add(new RegularUser("Åke", "snus444", 103));
+
+        }
 
     }
 }
