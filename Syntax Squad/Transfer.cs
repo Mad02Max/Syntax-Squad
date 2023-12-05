@@ -11,7 +11,7 @@ namespace Syntax_Squad
         //Simon Ståhl SUT23
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
         private Login userID = new Login();
-
+        
 
 
         /*public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
@@ -38,8 +38,12 @@ namespace Syntax_Squad
         /// 
         /// </summary>
 
-        public void TransferBetweenOwnAccounts(int fromAccountNumber, int toAccountNumber, double amount, string Userpassword, User user)
+        public void TransferBetweenOwnAccounts(User user)
         {
+            int fromAccountNumber;
+            int toAccountNumber;
+            double amount;
+            
             Console.Clear();
             foreach (var account in BankAccount.bankAccounts)
             {
@@ -58,6 +62,9 @@ namespace Syntax_Squad
             Console.WriteLine("Insert Account number to transfer to: ");
             toAccountNumber = int.Parse(Console.ReadLine());
 
+            Console.WriteLine("Enter the amount you wish to transfer: ");
+            amount = double.Parse(Console.ReadLine());
+
             var fromAccount = GetBankAccount(fromAccountNumber);
             var toAccount = GetBankAccount(toAccountNumber);
 
@@ -71,7 +78,7 @@ namespace Syntax_Squad
 
             Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
             Console.WriteLine($"New balance for {toAccount.AccountName}: {toAccount.Balance}");
-
+            
         }
 
         /// <summary>
@@ -79,8 +86,11 @@ namespace Syntax_Squad
         /// PIN kontroll för att säkerställa att man vill föra över till annan användare. 
         /// </summary>
 
-        public void TransferBetweenOtherAccounts(int fromAccountNumber, int toAccountNumber, double amount, User user)
+        public void TransferBetweenOtherAccounts(User user)
         {
+            int fromAccountNumber;
+            int toAccountNumber;
+            double amount;
 
             foreach (var account in BankAccount.bankAccounts)
             {
@@ -102,8 +112,9 @@ namespace Syntax_Squad
             Console.WriteLine("Enter the amount you wish to transfer: ");
             amount = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Please enter your Pin code to confirm the transaction:");
+            Console.WriteLine("Please enter your Password to confirm the transaction:");
             string password = Console.ReadLine();
+
             var fromAccount = GetBankAccount(fromAccountNumber);
             var toAccount = GetBankAccount(toAccountNumber);
 
