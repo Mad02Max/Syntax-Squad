@@ -99,6 +99,7 @@ namespace Syntax_Squad
                     Console.WriteLine($"Account Name: {account.AccountName}");
                     Console.WriteLine($"Account number: {account.AccountNumber}");
                     Console.WriteLine($"Balance: {account.Balance} - {account.Currency}");
+                    Console.WriteLine();
 
                 }
             }
@@ -118,7 +119,7 @@ namespace Syntax_Squad
             var fromAccount = GetBankAccount(fromAccountNumber);
             var toAccount = GetBankAccount(toAccountNumber);
 
-            if (fromAccount == null || toAccount == null || password != userID.Password) // fungerar verkligen detta?????
+            if (fromAccount == null || toAccount == null || password != user.Password) 
             {
                 Console.WriteLine("Invalid account number.");
                 return;
@@ -130,7 +131,7 @@ namespace Syntax_Squad
                 return;
             }
 
-            if (fromAccount != null && toAccount != null && password == userID.Password)
+            if (fromAccount != null && password == user.Password)
             {
                 fromAccount.Balance -= amount;
                 toAccount.Balance += amount;
