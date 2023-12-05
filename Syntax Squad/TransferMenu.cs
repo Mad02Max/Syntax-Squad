@@ -24,7 +24,7 @@ namespace Syntax_Squad
                 switch (userInput)
                 {
                     case "1":
-
+                        
                         break;
                     case "2":
 
