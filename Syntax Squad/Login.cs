@@ -9,16 +9,16 @@ namespace Syntax_Squad
 {
     public class Login : User
     {
-        private const int MaxAttempts = 3;
-
-        
+       private const int MaxAttempts = 3;
+       public List<User> allUsers = new List<User>();
+  
         public void LogIn()
         {
 
             List<User> allUsers = new List<User>();
             allUsers.AddRange(RegularUser.ExistingUsers());
             allUsers.AddRange(Admin.ExistingAdmins());
-                
+
 
             int attempts = 0;
 
