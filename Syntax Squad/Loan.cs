@@ -58,9 +58,13 @@ namespace Syntax_Squad
                 if (loan.accountID == user.UserId)
                 {
                     Console.Write($"\n\t You have a loan on: {loan.loanAmount}");
-                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("\n\t You dont have any loans");
                 }
             }
+            Console.ReadKey();
         }
 
         /// <summary>

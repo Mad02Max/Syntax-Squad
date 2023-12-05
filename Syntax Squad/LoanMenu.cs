@@ -14,6 +14,7 @@ namespace Syntax_Squad
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Loan loan = new Loan();
+            run = true;
             do
             {
                 Console.Clear();
