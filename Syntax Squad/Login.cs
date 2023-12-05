@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace Syntax_Squad
        
        private const int MaxAttempts = 3;
 
-       public int attempts = 0;
+        public int attempts = 0;
+        private int userID;
         /// <summary>
         /// Method for login, checking user list for username and password
         /// </summary>
@@ -20,8 +22,6 @@ namespace Syntax_Squad
         {
 
             List<User> AllUsers = User.AllUsers(); 
-                       
-
             do
             {
                 Console.WriteLine("Welcome to Syntax Squad Bank!");
@@ -38,7 +38,9 @@ namespace Syntax_Squad
                     Console.WriteLine("Login successful! press enter to continue to meny.");
                     Console.ReadKey();
 
+
                     userTryLogin.IsLoggedIn = true;
+
 
                     if (userTryLogin.IsAdmin)
                     {
@@ -68,8 +70,11 @@ namespace Syntax_Squad
           /// Method to get user ID
           /// </summary>
         public int GetUserID()
+
         {          
-            return UserId;
+                   
+            return userID;
+
         }
         /// <summary>
         /// Method for reseting attempts
