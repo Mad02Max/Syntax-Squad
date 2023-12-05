@@ -6,71 +6,55 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class UserMenu : Menu
     {
+        
         public override void ShowMenu(User user)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\t---|| User Menu ||---");
-            Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
+            TransferMenu transferMenu = new TransferMenu();
+            CreateAccount createAccount = new CreateAccount();
+            LoanMenu loanMenu = new LoanMenu();
 
-            string userInput = Console.ReadLine();
-
-            switch (userInput)
+            bool validChoice = false;
+            do
             {
-                case "1":
-                    ShowUserAccounts(user);
-                    break;
-                case "2":
-
-                    break;
-                case "3":
-                    CreateAccount createAccount = new CreateAccount();
-                    createAccount.MakeAccount();
-                    break;
-                case "4":
-                    break;
-                case "5":
-                    break;
-                default:
-                    break;
-
-
-            }
-        }
-        private static void ShowUserAccounts(User user)
-        {
-            while (true)
-            {
-                Console.WriteLine($"--- Accounts for {user.Name} ---");
-
-                foreach (var account in BankAccount.bankAccounts)
-                {
-                    if (account.Owner == user.Name)
-                    {
-                        Console.WriteLine($"Account Name: {account.AccountName}");
-                        Console.WriteLine($"Account Type: {account.AccountType}");
-                        Console.WriteLine($"Account number: {account.AccountNumber}");
-                        Console.WriteLine($"Currency: {account.Currency}");
-                        Console.WriteLine($"Balance: {account.Balance}");
-                    }
-                }
-                Console.WriteLine("Press 'M' to return to menu ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\t---|| User Menu ||---");
+                Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
 
                 string userInput = Console.ReadLine();
-                if(userInput.ToUpper() != "M")
+
+                switch (userInput)
                 {
-                    continue;
+                    case "1":
+                        BankAccount.ShowUserBankAccounts(user);
+                        validChoice = true;
+                        break;
+                    case "2":
+                        transferMenu.ShowMenu(user);
+                        validChoice = true;
+                        break;
+                    case "3":
+                        createAccount.MakeAccount();
+                        validChoice = true;
+                        break;
+                    case "4":
+                        loanMenu.ShowMenu(user);
+                        validChoice = true;
+                        break;
+                    case "5":
+                        //logout metod kommer här
+                        break;
+                    default:
+                        Console.WriteLine("Wrong input, choose between one of the menu options");
+                        break;
+
+
                 }
-                else
-                {
-                    break;
-                }
 
-            }
-
-
-
+            } while (!validChoice);
         }
+       
     }
 }

@@ -8,7 +8,7 @@ namespace Syntax_Squad
 {
     public class ExchangeRateManager
     {
-
+        //Simon Ståhl SUT23
         public Dictionary<string, decimal> exchangeRates;
 
         public ExchangeRateManager()
@@ -21,10 +21,16 @@ namespace Syntax_Squad
             };
         }
 
-        public void ChangeExchangeRates(string currencyCode, decimal newRate)
+        public void ChangeExchangeRates()
         {
+            DisplayExhangeRates();
+            Console.WriteLine("Enter currency code to change currency rate:");
+            string currencyCode = Console.ReadLine();
+
             if (exchangeRates.ContainsKey(currencyCode))
             {
+                Console.WriteLine("Enter new rate:");
+                decimal newRate = Convert.ToDecimal(Console.ReadLine());
                 exchangeRates[currencyCode] = newRate;
                 Console.WriteLine($"Exchange rate for {currencyCode} has been changed to {newRate}");
             }
