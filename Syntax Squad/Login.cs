@@ -22,6 +22,7 @@ namespace Syntax_Squad
         {
 
             List<User> AllUsers = User.AllUsers(); 
+
             do
             {
                 Console.WriteLine("Welcome to Syntax Squad Bank!");
@@ -39,19 +40,19 @@ namespace Syntax_Squad
                     Console.ReadKey();
 
 
-                    userTryLogin.IsLoggedIn = true;
-
 
                     if (userTryLogin.IsAdmin)
                     {
                         AdminMenu adminMenu = new AdminMenu();
                         adminMenu.ShowMenu(userTryLogin);
+                        userTryLogin.IsLoggedIn = true;
 
                     }
                     else
                     {
                         UserMenu userMenu = new UserMenu();
                         userMenu.ShowMenu(userTryLogin);
+                        userTryLogin.IsLoggedIn = true;
 
                     }
                     
@@ -70,11 +71,8 @@ namespace Syntax_Squad
           /// Method to get user ID
           /// </summary>
         public int GetUserID()
-
-        {          
-                   
+        {
             return userID;
-
         }
         /// <summary>
         /// Method for reseting attempts

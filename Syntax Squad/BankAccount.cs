@@ -87,23 +87,25 @@ namespace Syntax_Squad
                 {
                     if (account.Owner == user.Name)
                     {
-                        Console.WriteLine($"Account Name: {account.AccountName}");
-                        Console.WriteLine($"Account Type: {account.AccountType}");
+                        Console.Write($"Account Name: {account.AccountName}");
+                        Console.Write($"Account Type: {account.AccountType}");
                         Console.WriteLine($"Account number: {account.AccountNumber}");
                         Console.WriteLine($"Balance: {account.Balance} : {account.Currency}");
                         
                     }
                 }
-                Console.WriteLine("Press 'M' to return to menu ");
+                Console.WriteLine("Press enter to return to menu ");
 
                 string userInput = Console.ReadLine();
-                if (userInput.ToUpper() != "M")
+                if(string.IsNullOrWhiteSpace(userInput)) 
                 {
-                    continue;
+                    break;
                 }
                 else
                 {
-                    break;
+                    Console.WriteLine("Invalid input, Press enter to return");
+                    Console.ReadLine();
+                    Console.Clear();
                 }
 
             }
