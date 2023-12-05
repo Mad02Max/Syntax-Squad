@@ -16,7 +16,7 @@ namespace Syntax_Squad
 
         private double toaltalMoneyAmount;
         private Login userID = new Login();
-        private List<BankAccount> account = BankAccount.bankAccounts;
+        private int userId;
         private double loanSize;
         private List<Loan> loans = new List<Loan>();
         
@@ -24,12 +24,12 @@ namespace Syntax_Squad
         /// <summary>
         /// This method checks how big of a loan the user wants and if they are eligable for it
         /// </summary>
-        public void TakeOutLoan()
+        public void TakeOutLoan(User user)
         {
             Console.Clear();
-            foreach (BankAccount bankAccount in account)
+            foreach (BankAccount bankAccount in BankAccount.bankAccounts)
             {
-                if (bankAccount.ID == userID.UserId)
+                if (bankAccount.ID == user.UserId)
                 {
                     toaltalMoneyAmount += bankAccount.Balance;
                 }
@@ -43,21 +43,22 @@ namespace Syntax_Squad
 
             if(loanSize <= toaltalMoneyAmount * 5)
             {
-                AllLoanes(loanSize, userID.UserId);
+                AllLoanes(loanSize, user.UserId);
             }else Console.WriteLine("You can not borrow that much money with the amount of money you have.");
         }
 
         /// <summary>
         /// Makes it so the user can see what outgoing loans they have
         /// </summary>
-        public void SeeLoans()
+        public void SeeLoans(User user)
         {
             Console.Clear();
             foreach (Loan loan in loans)
             {
-                if (loan.accountID == userID.GetUserID())
+                if (loan.accountID == user.UserId)
                 {
                     Console.Write($"\n\t You have a loan on: {loan.loanAmount}");
+                    Console.ReadKey();
                 }
             }
         }

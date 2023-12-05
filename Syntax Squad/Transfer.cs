@@ -13,20 +13,23 @@ namespace Syntax_Squad
         private Login userID = new Login();
 
 
-        //public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
-        //{
 
-        //    var fromAccount = GetBankAccount(fromAccountNumber);
-        //    if (fromAccount.Balance == null || fromAccount.Balance < 0 && password == Userpassword)
-        //    {
-        //        Console.WriteLine("Insufficient fund on selected Account.");
-        //        return;
-        //    }
-        //    fromAccount.Balance = amount;
+        /*public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
+        {
 
-        //    Console.WriteLine($"Withdraw request successfull. Please take your money.");
-        //    Console.WriteLine($"Remaining Balance for {fromAccount}: {fromAccount.Balance}");
-        //}
+
+            var fromAccount = GetBankAccount(fromAccountNumber);
+            if (fromAccount.Balance == null || fromAccount.Balance < 0 && password == Userpassword)
+            {
+                Console.WriteLine("Insufficient fund on selected Account.");
+                return;
+            }
+            fromAccount.Balance = amount;
+
+            Console.WriteLine($"Withdraw request successfull. Please take your money.");
+            Console.WriteLine($"Remaining Balance for {fromAccount}: {fromAccount.Balance}");
+        }*/
+
 
 
         /// <summary>

@@ -36,6 +36,7 @@ namespace Syntax_Squad
                         break;
                 }
 
+                Console.ReadKey();
 
             } while (!validChoice);
         }

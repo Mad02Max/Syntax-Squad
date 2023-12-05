@@ -37,8 +37,12 @@ namespace Syntax_Squad
                        
                         break;
                     case "3":
-                        createAccount.MakeAccount();
                         
+                        
+
+                        createAccount.MakeAccount(user);
+                       
+
                         break;
                     case "4":
                         loanMenu.ShowMenu(user);

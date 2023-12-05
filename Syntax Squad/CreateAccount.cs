@@ -16,7 +16,6 @@ namespace Syntax_Squad
         private string accountName;
         private string accountType;
         private int accountNumber;
-        private Login userID = new Login();
         private int userId;
         private string accountCurrency;
         private double accountBalance = 0;
@@ -27,7 +26,7 @@ namespace Syntax_Squad
         /// <summary>
         /// Starts the process of creating a new bankaccount for the user so they can specify all the nesecary information.
         /// </summary>
-        public void MakeAccount()
+        public void MakeAccount(User user)
         {
             bool create = true;
 
@@ -39,9 +38,11 @@ namespace Syntax_Squad
                 AccountType();
                 GetOwner();
 
+                userId = user.UserId;
+
                 Console.Clear();
                 Console.WriteLine($"\n\t {accountName} : {accountType} : {accountCurrency}" +
-                    $"Are you sure this is the correct? Y/N");
+                    $"\n Are you sure this is the correct? Y/N");
                 string correct = Console.ReadLine();
 
                 if(correct.ToLower() == "y" || correct.ToLower() == "yes")
@@ -57,7 +58,7 @@ namespace Syntax_Squad
         /// </summary>
         private void CreateNewAccount()
         {
-            createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner,userID.GetUserID(), accountCurrency, accountBalance);
+            createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner,userId, accountCurrency, accountBalance);
             BankAccount.bankAccounts.Add(createdAccount);
         }
 
@@ -68,9 +69,9 @@ namespace Syntax_Squad
         {
             List<User> userList = User.AllTheUsers;
 
-            foreach (RegularUser user in userList)
+            foreach (User user in userList)
             {
-                if(user.UserId == userID.GetUserID())
+                if(user.UserId == userId)
                 {
                     accountOwner += user.Name;
                 }
@@ -95,7 +96,7 @@ namespace Syntax_Squad
                     "\n 3 : EUR" +
                     "\n Type in the number of the currency you want.");
 
-                if (int.TryParse(accountType, out accCurrency))
+                if (int.TryParse(Console.ReadLine(), out accCurrency))
                 {
                     if (accCurrency > 0 && accCurrency < 5)
                     {
@@ -131,13 +132,12 @@ namespace Syntax_Squad
             {
                 accountNumber = rng.Next(1000, 9999);
 
-                foreach (BankAccount account in BankAccount.bankAccounts)
+                bool accountExists = BankAccount.bankAccounts.Any(account => account.AccountNumber == accountNumber);
+                if (!accountExists)
                 {
-                    if(account.AccountNumber != accountNumber)
-                    {
-                        getAccountNumber = false;
-                    }
+                    getAccountNumber = false;
                 }
+
             }
             return accountNumber;
         }
@@ -189,7 +189,7 @@ namespace Syntax_Squad
                     "\n 4 : Pension" +
                     "\n Type in the number of the account you want.");
 
-                if (int.TryParse(accountType, out accType))
+                if (int.TryParse(Console.ReadLine(), out accType))
                 {
                     if (accType > 0 && accType < 5)
                     {
