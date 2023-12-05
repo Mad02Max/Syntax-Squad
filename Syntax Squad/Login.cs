@@ -45,12 +45,14 @@ namespace Syntax_Squad
                     {
                         AdminMenu adminMenu = new AdminMenu();
                         adminMenu.ShowMenu(userTryLogin);
+                        userTryLogin.IsLoggedIn = true;
 
                     }
                     else
                     {
                         UserMenu userMenu = new UserMenu();
                         userMenu.ShowMenu(userTryLogin);
+                        userTryLogin.IsLoggedIn = true;
 
                     }
                     return;
