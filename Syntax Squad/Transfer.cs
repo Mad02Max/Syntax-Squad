@@ -37,6 +37,7 @@ namespace Syntax_Squad
 
         public void TransferBetweenOwnAccounts(int fromAccountNumber, int toAccountNumber, double amount, string Userpassword, User user)
         {
+            Console.Clear();
             foreach (var account in BankAccount.bankAccounts)
             {
                 if (account.Owner == user.Name)
@@ -77,6 +78,7 @@ namespace Syntax_Squad
 
         public void TransferBetweenOtherAccounts(int fromAccountNumber, int toAccountNumber, double amount, User user)
         {
+            Console.Clear();
             foreach (var account in BankAccount.bankAccounts)
             {
                 if (account.Owner == user.Name)
