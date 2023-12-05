@@ -37,7 +37,7 @@ namespace Syntax_Squad
                         validChoice = true;
                         break;
                     case "3":
-                        createAccount.MakeAccount();
+                        createAccount.MakeAccount(user);
                         validChoice = true;
                         break;
                     case "4":

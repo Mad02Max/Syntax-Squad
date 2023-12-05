@@ -13,7 +13,7 @@ namespace Syntax_Squad
         private Login userID = new Login();
 
 
-        public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
+        /*public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
         {
 
             var fromAccount = GetBankAccount(fromAccountNumber);
@@ -26,7 +26,7 @@ namespace Syntax_Squad
 
             Console.WriteLine($"Withdraw request successfull. Please take your money.");
             Console.WriteLine($"Remaining Balance for {fromAccount}: {fromAccount.Balance}");
-        }
+        }*/
 
 
         /// <summary>
