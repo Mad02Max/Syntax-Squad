@@ -81,7 +81,7 @@ namespace Syntax_Squad
                         Console.WriteLine($"Account Name: {account.AccountName}");
                         Console.WriteLine($"Account Type: {account.AccountType}");
                         Console.WriteLine($"Account number: {account.AccountNumber}");
-                        Console.WriteLine($"Balance: {account.Balance} - {account.Currency}");
+                        Console.WriteLine($"Balance: {account.Balance} : {account.Currency}");
                         
                     }
                 }

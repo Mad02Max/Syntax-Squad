@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 namespace Syntax_Squad
 {
     //Noah SUT23
-    public class AdminFunctions : Admin
+    public class AdminFunctions
     {
-        public AdminFunctions(string name, string password, int userId) : base(name, password, userId)
-        {
-        }
+        /// <summary>
+        /// AddUser function makes it possible for admins to add more users in the program
+        /// </summary>
+        /// <param name="user"></param>
         public static void AddUser(User user)
         {
             Console.WriteLine("Add new user");
@@ -41,7 +42,7 @@ namespace Syntax_Squad
                 {
 
                     RegularUser newUser = new RegularUser(newName, newPassword, newUserId);
-                    RegularUser.regularUsers.Add(newUser);
+                    RegularUser.AllTheUsers.Add(newUser);
 
                     Console.WriteLine($"New user {newName} was added by {user.Name}");
 
@@ -60,6 +61,9 @@ namespace Syntax_Squad
 
 
         }
+        /// <summary>
+        /// Method that lets admin see wich users are in the bank
+        /// </summary>
         public static void ShowCurrentUsers()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -74,13 +78,14 @@ namespace Syntax_Squad
                     break;
                 }
 
-                foreach (var user in RegularUser.regularUsers)
+                foreach (var user in RegularUser.AllTheUsers)
                 {
                     Console.WriteLine($"{user.UserId} - {user.Name}");
 
                 }
                 
             }
+            
 
         }
     }

@@ -10,19 +10,14 @@ namespace Syntax_Squad
     //Noah SUT23
     public class Admin : User
     {
-        public static List<Admin> Admins = new List<Admin>();
         public Admin(string name, string password, int userId)
         {
             UserId = userId;
             Name = name;
             Password = password;
             IsAdmin = true;
-
         }
-        public static void ExistingAdmins()
-        {
-            Admins.Add(new Admin("Syntax", "Squad", 1337));
-        }
+        
         
 
 
