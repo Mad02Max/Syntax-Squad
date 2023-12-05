@@ -32,7 +32,7 @@ namespace Syntax_Squad
                 Console.WriteLine("Password: ");
                 string enterPassword = Console.ReadLine();
 
-                User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword); //
+                User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
 
                 if (userTryLogin != null)
                 {
@@ -55,7 +55,7 @@ namespace Syntax_Squad
                         userTryLogin.IsLoggedIn = true;
 
                     }
-                    return;
+                    
                 }
                 else
                 {
