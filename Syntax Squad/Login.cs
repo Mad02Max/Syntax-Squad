@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
-    public class Login : User
+    public class Login : User           //Anton SUT23
     {
        private const int MaxAttempts = 3;
-       public List<User> allUsers = new List<User>();
-  
+
+       public int attempts = 0;
+        /// <summary>
+        /// Method for login, checking user list for username and password
+        /// </summary>
         public void LogIn()
         {
 
-            List<User> allUsers = new List<User>();
-            allUsers.AddRange(RegularUser.ExistingUsers());
-            allUsers.AddRange(Admin.ExistingAdmins());
-
-
-            int attempts = 0;
+            List<User> AllUsers = User.AllUsers(); 
+                       
 
             do
             {
@@ -31,7 +30,7 @@ namespace Syntax_Squad
                 Console.WriteLine("Password: ");
                 string enterPassword = Console.ReadLine();
 
-                User userTryLogin = allUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
+                User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword); //
 
                 if (userTryLogin != null)
                 {
@@ -60,10 +59,19 @@ namespace Syntax_Squad
 
 
 
-        }
+        } /// <summary>
+          /// Method to get user ID
+          /// </summary>
         public int GetUserID()
         {
             return UserId;
+        }
+        /// <summary>
+        /// Method for reseting attempts
+        /// </summary>
+        public void ResetAttempt()
+        {
+            attempts = 0;
         }
 
     }
