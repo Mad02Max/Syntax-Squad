@@ -13,8 +13,10 @@ namespace Syntax_Squad
         private Login userID = new Login();
 
 
+
         /*public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
         {
+
 
             var fromAccount = GetBankAccount(fromAccountNumber);
             if (fromAccount.Balance == null || fromAccount.Balance < 0 && password == Userpassword)
@@ -27,6 +29,7 @@ namespace Syntax_Squad
             Console.WriteLine($"Withdraw request successfull. Please take your money.");
             Console.WriteLine($"Remaining Balance for {fromAccount}: {fromAccount.Balance}");
         }*/
+
 
 
         /// <summary>
@@ -78,7 +81,7 @@ namespace Syntax_Squad
 
         public void TransferBetweenOtherAccounts(int fromAccountNumber, int toAccountNumber, double amount, User user)
         {
-            Console.Clear();
+
             foreach (var account in BankAccount.bankAccounts)
             {
                 if (account.Owner == user.Name)
