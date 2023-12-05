@@ -19,6 +19,7 @@ namespace Syntax_Squad
             bool validChoice = false;
             do
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\t---|| User Menu ||---");
                 Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
