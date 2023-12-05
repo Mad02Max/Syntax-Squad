@@ -9,8 +9,10 @@ namespace Syntax_Squad
     //Noah SUT23
     public class TransferMenu : UserMenu
     {
+
         public override void ShowMenu(User user)
         {
+            Transfer transfer = new Transfer();
 
             bool validChoice = false;
             do
@@ -27,10 +29,11 @@ namespace Syntax_Squad
                         
                         break;
                     case "2":
-
+                        transfer.TransferBetweenOwnAccounts(user);
                         break;
                     case "3":
-
+                        transfer.TransferBetweenOtherAccounts(user);
+                        break;
                     case "4":
                         validChoice = true;
                         break;
