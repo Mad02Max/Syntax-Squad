@@ -9,6 +9,7 @@ namespace Syntax_Squad
 {
     public class Login : User           //Anton SUT23
     {
+       
        private const int MaxAttempts = 3;
 
        public int attempts = 0;
@@ -39,12 +40,14 @@ namespace Syntax_Squad
 
                     if (userTryLogin.IsAdmin)
                     {
-                        
+                        AdminMenu adminMenu = new AdminMenu();
+                        adminMenu.ShowMenu(userTryLogin);
 
                     }
                     else
                     {
-
+                        UserMenu userMenu = new UserMenu();
+                        userMenu.ShowMenu(userTryLogin);
 
                     }
                     return;
