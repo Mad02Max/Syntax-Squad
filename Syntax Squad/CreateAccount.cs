@@ -66,7 +66,7 @@ namespace Syntax_Squad
         /// </summary>
         private void GetOwner()
         {
-            List<RegularUser> userList = RegularUser.regularUsers;
+            List<User> userList = User.AllTheUsers;
 
             foreach (RegularUser user in userList)
             {
