@@ -25,10 +25,10 @@ namespace Syntax_Squad
                 switch (userInput)
                 {
                     case "1":
-                        loan.TakeOutLoan();
+                        loan.TakeOutLoan(user);
                         break;
                     case "2":
-                        loan.SeeLoans();
+                        loan.SeeLoans(user);
                         break;
                     case "3":
                         run = false;
