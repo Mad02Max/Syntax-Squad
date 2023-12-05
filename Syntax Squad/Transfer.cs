@@ -35,14 +35,24 @@ namespace Syntax_Squad
         /// 
         /// </summary>
 
-        public void TransferBetweenOwnAccounts(int fromAccountNumber, int toAccountNumber, double amount, string Userpassword)
+        public void TransferBetweenOwnAccounts(int fromAccountNumber, int toAccountNumber, double amount, string Userpassword, User user)
         {
-            // lista för konton här
+            Console.Clear();
+            foreach (var account in BankAccount.bankAccounts)
+            {
+                if (account.Owner == user.Name)
+                {
+                    Console.WriteLine($"Account Name: {account.AccountName}");
+                    Console.WriteLine($"Account number: {account.AccountNumber}");
+                    Console.WriteLine($"Balance: {account.Balance} {account.Currency}");
 
-            Console.WriteLine("Choose Account to transfer from: ");
+                }
+            }
+
+            Console.WriteLine("Insert Account number to transfer from: ");
             fromAccountNumber = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Choose Account to transfer to: ");
+            Console.WriteLine("Insert Account number to transfer to: ");
             toAccountNumber = int.Parse(Console.ReadLine());
 
             var fromAccount = GetBankAccount(fromAccountNumber);
@@ -66,14 +76,24 @@ namespace Syntax_Squad
         /// PIN kontroll för att säkerställa att man vill föra över till annan användare. 
         /// </summary>
 
-        public void TransferBetweenOtherAccounts(int fromAccountNumber, int toAccountNumber, double amount)
+        public void TransferBetweenOtherAccounts(int fromAccountNumber, int toAccountNumber, double amount, User user)
         {
-            // lista för konton här
+            Console.Clear();
+            foreach (var account in BankAccount.bankAccounts)
+            {
+                if (account.Owner == user.Name)
+                {
+                    Console.WriteLine($"Account Name: {account.AccountName}");
+                    Console.WriteLine($"Account number: {account.AccountNumber}");
+                    Console.WriteLine($"Balance: {account.Balance} - {account.Currency}");
 
-            Console.WriteLine("Choose Account to transfer from: ");
+                }
+            }
+
+            Console.WriteLine("Insert Account number to transfer from: ");
             fromAccountNumber = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Choose Account to transfer to: ");
+            Console.WriteLine("Insert Account number to transfer to: ");
             toAccountNumber = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter the amount you wish to transfer: ");
@@ -113,7 +133,7 @@ namespace Syntax_Squad
             return BankAccount.bankAccounts.Find(a => a.AccountNumber == AccountNumber);
         }
 
-       
+
 
     }
 }
