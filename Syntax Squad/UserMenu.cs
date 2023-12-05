@@ -9,8 +9,13 @@ namespace Syntax_Squad
     //Noah SUT23
     public class UserMenu : Menu
     {
+        
         public override void ShowMenu(User user)
         {
+            TransferMenu transferMenu = new TransferMenu();
+            CreateAccount createAccount = new CreateAccount();
+            LoanMenu loanMenu = new LoanMenu();
+
             bool validChoice = false;
             do
             {
@@ -27,17 +32,14 @@ namespace Syntax_Squad
                         validChoice = true;
                         break;
                     case "2":
-                        TransferMenu transferMenu = new TransferMenu();
                         transferMenu.ShowMenu(user);
                         validChoice = true;
                         break;
                     case "3":
-                        CreateAccount createAccount = new CreateAccount();
                         createAccount.MakeAccount();
                         validChoice = true;
                         break;
                     case "4":
-                        LoanMenu loanMenu = new LoanMenu();
                         loanMenu.ShowMenu(user);
                         validChoice = true;
                         break;
