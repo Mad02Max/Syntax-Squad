@@ -16,6 +16,7 @@ namespace Syntax_Squad
             Loan loan = new Loan();
             do
             {
+                Console.Clear();
                 Console.WriteLine("\t---|| Loan Menu ||---");
                 Console.WriteLine("\t1: Take loan \n\t2: See Loans \n\t3: Return to menu");
 
