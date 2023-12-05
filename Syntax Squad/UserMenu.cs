@@ -34,19 +34,12 @@ namespace Syntax_Squad
                         break;
                     case "2":
                         transferMenu.ShowMenu(user);
-                       
                         break;
                     case "3":
-                        
-                        
-
                         createAccount.MakeAccount(user);
-                       
-
                         break;
                     case "4":
                         loanMenu.ShowMenu(user);
-                        
                         break;
                     case "5":
                         //logout metod kommer här
