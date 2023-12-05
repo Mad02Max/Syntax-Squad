@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
-    public class BankAccount
+    public class BankAccount        //Anton SUT23
     {
 
         public string AccountName { get; set; }
@@ -19,7 +19,9 @@ namespace Syntax_Squad
         public double Balance { get; set; }
         public int ID { get; set; }
 
-
+        /// <summary>
+        /// List of bank account and balance
+        /// </summary>
         public static List<BankAccount> bankAccounts = new List<BankAccount>();
 
         public BankAccount(string accountName, string accountType, int accountNumber, string owner,int iD, string currency, double balance)
@@ -32,7 +34,9 @@ namespace Syntax_Squad
             Balance = balance;
             ID = iD;
         }
-
+        /// <summary>
+        /// Method for the list
+        /// </summary>
         public static void ExistingBankAccounts()
         {
             BankAccount Acc1 = new BankAccount("Kontantkort","Card", 1001, "Börje",101, "SEK", 100000.743);
@@ -57,13 +61,18 @@ namespace Syntax_Squad
             bankAccounts.Add(Acc8);
             bankAccounts.Add(Acc9);
 
-           
-        }
+
+        } 
+          /// <summary>
+          /// Method for making it easy to get list for other classes
+          /// </summary>
         public List<BankAccount> GetList() 
         { 
             return bankAccounts; 
         }
-
+        /// <summary>
+        /// For adding bank accounts in list
+        /// </summary>
         public void SetList(List<BankAccount> addBankAccounts)
         {
             bankAccounts = addBankAccounts;
@@ -81,7 +90,7 @@ namespace Syntax_Squad
                         Console.WriteLine($"Account Name: {account.AccountName}");
                         Console.WriteLine($"Account Type: {account.AccountType}");
                         Console.WriteLine($"Account number: {account.AccountNumber}");
-                        Console.WriteLine($"Balance: {account.Balance} - {account.Currency}");
+                        Console.WriteLine($"Balance: {account.Balance} : {account.Currency}");
                         
                     }
                 }

@@ -15,7 +15,7 @@ namespace Syntax_Squad
         public bool IsAdmin { get; set; } = false;
         public bool IsLoggedIn { get; set; } = false;
 
-        public List<User> AllTheUsers = new List<User>();
+        public static List<User> AllTheUsers = new List<User>();
 
         public static List<User> AllUsers()
         {
