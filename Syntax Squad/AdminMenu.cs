@@ -24,15 +24,15 @@ namespace Syntax_Squad
                 {
                     case "1":
                         AdminFunctions.AddUser(user);
-                        validChoice = true;
+                        
                         break;
                     case "2":
                         manager.ChangeExchangeRates();
-                        validChoice = true;
+                        
                         break;
                     case "3":
                         AdminFunctions.ShowCurrentUsers();
-                        validChoice = true;
+                        
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
