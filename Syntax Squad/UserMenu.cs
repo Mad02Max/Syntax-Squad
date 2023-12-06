@@ -13,7 +13,7 @@ namespace Syntax_Squad
         public override void ShowMenu(User user)
         {
             TransferMenu transferMenu = new TransferMenu();
-            CreateAccount createAccount = new CreateAccount();
+            CreateAccount newAccount = new CreateAccount();
             LoanMenu loanMenu = new LoanMenu();
 
             bool validChoice = false;
@@ -30,13 +30,12 @@ namespace Syntax_Squad
                 {
                     case "1":
                         BankAccount.ShowUserBankAccounts(user);
-                        
                         break;
                     case "2":
                         transferMenu.ShowMenu(user);
                         break;
                     case "3":
-                        createAccount.MakeAccount(user);
+                        newAccount.MakeAccount(user);
                         break;
                     case "4":
                         loanMenu.ShowMenu(user);

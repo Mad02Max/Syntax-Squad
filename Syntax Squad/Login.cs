@@ -20,8 +20,14 @@ namespace Syntax_Squad
         /// </summary>
         public void LogIn()
         {
+
+            UserMenu userMenu = new UserMenu();
+            AdminMenu adminMenu = new AdminMenu();
+
+            List<User> AllUsers = User.AllUsers();
+
             ACIIART Art = new ACIIART();
-                     
+
             do
             {
                 Art.PrintArt();
@@ -45,14 +51,12 @@ namespace Syntax_Squad
 
                     if (userTryLogin.IsAdmin)
                     {
-                        AdminMenu adminMenu = new AdminMenu();
                         adminMenu.ShowMenu(userTryLogin);
                         userTryLogin.IsLoggedIn = true;
 
                     }
                     else
                     {
-                        UserMenu userMenu = new UserMenu();
                         userMenu.ShowMenu(userTryLogin);
                         userTryLogin.IsLoggedIn = true;
 
