@@ -9,15 +9,16 @@ namespace Syntax_Squad
     //Noah SUT23
     public class AdminMenu : Menu
     {
+        ExchangeRateManager manager = new ExchangeRateManager();
         public override void ShowMenu(User user)
         {
-            ExchangeRateManager manager = new ExchangeRateManager();
+            
             bool validChoice = false;
             do
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\t---|| Admin Menu ||---");
-                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users");
+                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Logout");
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
@@ -33,6 +34,9 @@ namespace Syntax_Squad
                     case "3":
                         AdminFunctions.ShowCurrentUsers();
                         
+                        break;
+                        case "4":
+                        user.IsLoggedIn = false;
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
