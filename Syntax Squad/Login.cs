@@ -20,10 +20,13 @@ namespace Syntax_Squad
         /// </summary>
         public void LogIn()
         {
+
             UserMenu userMenu = new UserMenu();
             AdminMenu adminMenu = new AdminMenu();
 
             List<User> AllUsers = User.AllUsers();
+
+            ACIIART Art = new ACIIART();
 
             do
             {
@@ -36,7 +39,7 @@ namespace Syntax_Squad
                 Console.Write("\tPassword: ");
                 string enterPassword = Console.ReadLine();
 
-                User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
+                User userTryLogin = AllTheUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
 
                 if (userTryLogin != null)
                 {
