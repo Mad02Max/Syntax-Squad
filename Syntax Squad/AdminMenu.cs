@@ -13,10 +13,13 @@ namespace Syntax_Squad
         public override void ShowMenu(User user)
         {
             
+            ACIIART Art = new ACIIART();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             bool validChoice = false;
             do
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Clear();
+                Art.PrintArt();
                 Console.WriteLine("\t---|| Admin Menu ||---");
                 Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Logout");
 
