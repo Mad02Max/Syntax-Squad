@@ -16,12 +16,14 @@ namespace Syntax_Squad
             TransferMenu transferMenu = new TransferMenu();
             CreateAccount newAccount = new CreateAccount();
             LoanMenu loanMenu = new LoanMenu();
+            ACIIART Art = new ACIIART();
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
-            
             bool validChoice = false;
             do
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Clear();
+                Art.PrintArt();
                 Console.WriteLine("\t---|| User Menu ||---");
                 Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
 

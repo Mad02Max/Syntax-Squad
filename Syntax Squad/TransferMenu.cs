@@ -12,11 +12,14 @@ namespace Syntax_Squad
         Transfer transfer = new Transfer();
         public override void ShowMenu(User user)
         {
-            
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            ACIIART Art = new ACIIART();
+
             bool validChoice = false;
             do
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Clear();
+                Art.PrintArt();
                 Console.WriteLine("\t---|| Transfer Menu ||---");
                 Console.WriteLine("\t1: Withdraw money \n\t2: Transfer between own accounts \n\t3: Transfer to another user \n\t4: Return to Main menu");
 
@@ -40,7 +43,7 @@ namespace Syntax_Squad
                         break;
                 }
 
-                Console.ReadKey();
+               
 
             } while (!validChoice);
         }
