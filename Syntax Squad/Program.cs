@@ -3,8 +3,16 @@
     internal class Program
     {
         static void Main(string[] args)
-        {
-            Console.WriteLine("World!");
+        { 
+            User.ExistingUsers();
+            BankAccount.ExistingBankAccounts();
+
+            Login login = new Login();
+            login.LogIn();
+
+            Console.ReadKey();
         }
+
+
     }
 }
