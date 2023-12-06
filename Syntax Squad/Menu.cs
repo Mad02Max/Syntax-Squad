@@ -10,7 +10,7 @@ namespace Syntax_Squad
     public abstract class Menu
     {
         public abstract void ShowMenu(User user);
-
+        
     }
 
 

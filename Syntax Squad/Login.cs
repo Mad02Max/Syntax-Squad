@@ -21,8 +21,7 @@ namespace Syntax_Squad
         public void LogIn()
         {
 
-            List<User> AllUsers = User.AllUsers(); 
-
+            
             do
             {
                 Console.WriteLine("Welcome to Syntax Squad Bank!");
@@ -32,7 +31,7 @@ namespace Syntax_Squad
                 Console.WriteLine("Password: ");
                 string enterPassword = Console.ReadLine();
 
-                User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
+                User userTryLogin = AllTheUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
 
                 if (userTryLogin != null)
                 {

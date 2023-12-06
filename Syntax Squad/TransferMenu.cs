@@ -9,15 +9,13 @@ namespace Syntax_Squad
     //Noah SUT23
     public class TransferMenu : UserMenu
     {
-
+        Transfer transfer = new Transfer();
         public override void ShowMenu(User user)
         {
-            Transfer transfer = new Transfer();
-
+            
             bool validChoice = false;
             do
             {
-                
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\t---|| Transfer Menu ||---");
                 Console.WriteLine("\t1: Withdraw money \n\t2: Transfer between own accounts \n\t3: Transfer to another user \n\t4: Return to Main menu");

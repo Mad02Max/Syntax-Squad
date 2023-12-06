@@ -17,19 +17,7 @@ namespace Syntax_Squad
 
         public static List<User> AllTheUsers = new List<User>();
 
-        public static List<User> AllUsers()
-        {
-            var users = new List<User>
-            {
-            new Admin("Syntax", "Squad", 1337),
-            new RegularUser("Börje", "kaffe123", 101),
-            new RegularUser("Stefan", "betong321", 102),
-            new RegularUser("Åke", "snus444", 103)
-
-            };
-
-            return users;
-        }
+       
         public static void ExistingUsers()
         {
             AllTheUsers.Add(new Admin("Syntax", "Squad", 1337));
