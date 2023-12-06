@@ -10,6 +10,7 @@ namespace Syntax_Squad
     {
         public void PrintArt()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\r\n   _____             _               ____              _    \r" +
                 "\n  / ____|           | |             |  _ \\            | |   \r" +
                 "\n | (___  _   _ _ __ | |_ __ ___  __ | |_) | __ _ _ __ | | __\r" +
