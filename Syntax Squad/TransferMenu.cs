@@ -21,21 +21,18 @@ namespace Syntax_Squad
                 Console.Clear();
                 Art.PrintArt();
                 Console.WriteLine("\t---|| Transfer Menu ||---");
-                Console.WriteLine("\t1: Withdraw money \n\t2: Transfer between own accounts \n\t3: Transfer to another user \n\t4: Return to Main menu");
+                Console.WriteLine("\t1:Transfer between own accounts  \n\t2: Transfer to another user \n\t3: Return to menu");
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "1":
-                        
-                        break;
-                    case "2":
                         transfer.TransferBetweenOwnAccounts(user);
                         break;
-                    case "3":
+                    case "2":
                         transfer.TransferBetweenOtherAccounts(user);
                         break;
-                    case "4":
+                    case "3":
                         validChoice = true;
                         break;
                     default:
@@ -43,7 +40,7 @@ namespace Syntax_Squad
                         break;
                 }
 
-               
+
 
             } while (!validChoice);
         }
