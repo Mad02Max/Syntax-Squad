@@ -13,22 +13,25 @@ namespace Syntax_Squad
         public override void ShowMenu(User user)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Loan loan = new Loan();
+
+
+            run = true;
+
             do
             {
                 Console.Clear();
                 Console.WriteLine("\t---|| Loan Menu ||---");
-                Console.WriteLine("\t1: Take loan \n\t2: See Loans \n\t3: Return to menu");
+                Console.WriteLine("\t1: Take loan \n\t2: See Loans \n\t3: Return to Main menu");
 
                 string userInput = Console.ReadLine();
 
                 switch (userInput)
                 {
                     case "1":
-                        loan.TakeOutLoan(user);
+                        Loan.TakeOutLoan(user);
                         break;
                     case "2":
-                        loan.SeeLoans(user);
+                        Loan.SeeLoans(user);
                         break;
                     case "3":
                         run = false;

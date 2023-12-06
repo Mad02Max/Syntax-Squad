@@ -15,6 +15,7 @@ namespace Syntax_Squad
         /// <param name="user"></param>
         public static void AddUser(User user)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Add new user");
             do
             {
@@ -80,7 +81,7 @@ namespace Syntax_Squad
 
                 foreach (var user in User.AllTheUsers)
                 {
-                    Console.WriteLine($"{user.UserId} - {user.Name}");
+                    Console.WriteLine($"User ID: {user.UserId} - User Name: {user.Name}");
 
                 }
                 

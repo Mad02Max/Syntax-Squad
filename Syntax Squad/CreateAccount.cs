@@ -36,8 +36,7 @@ namespace Syntax_Squad
                 AccountNumber();
                 AccountCurrency();
                 AccountType();
-                GetOwner();
-
+                accountOwner = user.Name;
                 userId = user.UserId;
 
                 Console.Clear();
@@ -60,22 +59,6 @@ namespace Syntax_Squad
         {
             createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner,userId, accountCurrency, accountBalance);
             BankAccount.bankAccounts.Add(createdAccount);
-        }
-
-        /// <summary>
-        /// Gets the users name form the 
-        /// </summary>
-        private void GetOwner()
-        {
-            List<User> userList = User.AllTheUsers;
-
-            foreach (User user in userList)
-            {
-                if(user.UserId == userId)
-                {
-                    accountOwner += user.Name;
-                }
-            }
         }
 
         /// <summary>

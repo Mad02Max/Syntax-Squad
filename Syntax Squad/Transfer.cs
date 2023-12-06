@@ -10,7 +10,6 @@ namespace Syntax_Squad
     {
         //Simon Ståhl SUT23
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
-        private Login userID = new Login();
         
 
 
@@ -40,45 +39,46 @@ namespace Syntax_Squad
 
         public void TransferBetweenOwnAccounts(User user)
         {
+            Console.Clear();
             int fromAccountNumber;
             int toAccountNumber;
             double amount;
-            
-            Console.Clear();
-            foreach (var account in BankAccount.bankAccounts)
+            List<int> loggedInUserAccountNumber = loggedInAccountList(user);
+                        
+            try
             {
-                if (account.Owner == user.Name)
+
+                Console.WriteLine("Insert Account number to transfer from: ");
+                fromAccountNumber = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Insert Account number to transfer to: ");
+                toAccountNumber = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter the amount you wish to transfer: ");
+                amount = double.Parse(Console.ReadLine());
+
+                var fromAccount = GetBankAccount(fromAccountNumber);
+                var toAccount = GetBankAccount(toAccountNumber);
+
+               
+                if (fromAccount.Balance > amount && loggedInUserAccountNumber.Contains(fromAccountNumber))
                 {
-                    Console.WriteLine($"Account Name: {account.AccountName}");
-                    Console.WriteLine($"Account number: {account.AccountNumber}");
-                    Console.WriteLine($"Balance: {account.Balance} {account.Currency}");
+                    fromAccount.Balance -= amount;
+                    toAccount.Balance += amount;
+                    Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
+                    Console.WriteLine($"New balance for {toAccount.AccountName}: {toAccount.Balance}");
 
                 }
+
             }
-
-            Console.WriteLine("Insert Account number to transfer from: ");
-            fromAccountNumber = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Insert Account number to transfer to: ");
-            toAccountNumber = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Enter the amount you wish to transfer: ");
-            amount = double.Parse(Console.ReadLine());
-
-            var fromAccount = GetBankAccount(fromAccountNumber);
-            var toAccount = GetBankAccount(toAccountNumber);
-
-            if (fromAccount.Balance < amount)
+            catch (Exception ex)
             {
-                Console.WriteLine("Insufficient funds.");
-                return;
+                Console.WriteLine("Invalid input, please try again.");
             }
-            fromAccount.Balance -= amount;
-            toAccount.Balance += amount;
 
-            Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
-            Console.WriteLine($"New balance for {toAccount.AccountName}: {toAccount.Balance}");
-            
+
+
+
         }
 
         /// <summary>
@@ -88,37 +88,31 @@ namespace Syntax_Squad
 
         public void TransferBetweenOtherAccounts(User user)
         {
+            Console.Clear();
             int fromAccountNumber;
             int toAccountNumber;
             double amount;
+            List<int> loggedInUserAccountNumber = loggedInAccountList(user);
+           
 
-            foreach (var account in BankAccount.bankAccounts)
+            try
             {
-                if (account.Owner == user.Name)
-                {
-                    Console.WriteLine($"Account Name: {account.AccountName}");
-                    Console.WriteLine($"Account number: {account.AccountNumber}");
-                    Console.WriteLine($"Balance: {account.Balance} - {account.Currency}");
+                Console.WriteLine("Insert Account number to transfer from: ");
+                fromAccountNumber = int.Parse(Console.ReadLine());
 
-                }
-            }
+                Console.WriteLine("Insert Account number to transfer to: ");
+                toAccountNumber = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Insert Account number to transfer from: ");
-            fromAccountNumber = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the amount you wish to transfer: ");
+                amount = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Insert Account number to transfer to: ");
-            toAccountNumber = int.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter your Password to confirm the transaction:");
+                string password = Console.ReadLine();
 
-            Console.WriteLine("Enter the amount you wish to transfer: ");
-            amount = double.Parse(Console.ReadLine());
+                var fromAccount = GetBankAccount(fromAccountNumber);
+                var toAccount = GetBankAccount(toAccountNumber);
 
-            Console.WriteLine("Please enter your Password to confirm the transaction:");
-            string password = Console.ReadLine();
-
-            var fromAccount = GetBankAccount(fromAccountNumber);
-            var toAccount = GetBankAccount(toAccountNumber);
-
-            if (fromAccount == null || toAccount == null || password != userID.Password) // fungerar verkligen detta?????
+            if (fromAccount == null || toAccount == null || password != user.Password) // fungerar verkligen detta?????
             {
                 Console.WriteLine("Invalid account number.");
                 return;
@@ -130,13 +124,20 @@ namespace Syntax_Squad
                 return;
             }
 
-            if (fromAccount != null && toAccount != null && password == userID.Password)
+            if (fromAccount != null && toAccount != null && password == user.Password)
             {
                 fromAccount.Balance -= amount;
                 toAccount.Balance += amount;
                 Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
 
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+
+            
 
 
         }
@@ -145,9 +146,24 @@ namespace Syntax_Squad
         public BankAccount GetBankAccount(int AccountNumber)
         {
             return BankAccount.bankAccounts.Find(a => a.AccountNumber == AccountNumber);
+                       
         }
 
+        public List<int> loggedInAccountList(User user)
+        {
+            List<int> loggedInUserAccountNumber = new List<int>();
 
+            foreach (var account in BankAccount.bankAccounts)
+            {
+                if (account.Owner == user.Name)
+                {
+                    Console.WriteLine($"Account Name: {account.AccountName}");
+                    Console.WriteLine($"Account number: {account.AccountNumber} Balance: {account.Balance}{account.Currency}");
+                    loggedInUserAccountNumber.Add(account.AccountNumber);
+                }
+            }
+            return loggedInUserAccountNumber;
+        }
 
     }
 }
