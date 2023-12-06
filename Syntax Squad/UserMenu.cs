@@ -15,6 +15,7 @@ namespace Syntax_Squad
 
             TransferMenu transferMenu = new TransferMenu();
             CreateAccount newAccount = new CreateAccount();
+            LoanMenu loanMenu = new LoanMenu();
 
             
             bool validChoice = false;
