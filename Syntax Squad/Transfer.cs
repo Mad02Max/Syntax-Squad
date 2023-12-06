@@ -10,7 +10,6 @@ namespace Syntax_Squad
     {
         //Simon Ståhl SUT23
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
-        private Login userID = new Login();
         
 
 
@@ -118,7 +117,7 @@ namespace Syntax_Squad
             var fromAccount = GetBankAccount(fromAccountNumber);
             var toAccount = GetBankAccount(toAccountNumber);
 
-            if (fromAccount == null || toAccount == null || password != userID.Password) // fungerar verkligen detta?????
+            if (fromAccount == null || toAccount == null || password != user.Password) // fungerar verkligen detta?????
             {
                 Console.WriteLine("Invalid account number.");
                 return;
@@ -130,7 +129,7 @@ namespace Syntax_Squad
                 return;
             }
 
-            if (fromAccount != null && toAccount != null && password == userID.Password)
+            if (fromAccount != null && toAccount != null && password == user.Password)
             {
                 fromAccount.Balance -= amount;
                 toAccount.Balance += amount;

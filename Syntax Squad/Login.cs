@@ -15,13 +15,16 @@ namespace Syntax_Squad
 
         public int attempts = 0;
         private int userID;
+
         /// <summary>
         /// Method for login, checking user list for username and password
         /// </summary>
         public void LogIn()
         {
+            UserMenu userMenu = new UserMenu();
+            AdminMenu adminMenu = new AdminMenu();
 
-            List<User> AllUsers = User.AllUsers(); 
+            List<User> AllUsers = User.AllUsers();
 
             do
             {
@@ -43,14 +46,12 @@ namespace Syntax_Squad
 
                     if (userTryLogin.IsAdmin)
                     {
-                        AdminMenu adminMenu = new AdminMenu();
                         adminMenu.ShowMenu(userTryLogin);
                         userTryLogin.IsLoggedIn = true;
 
                     }
                     else
                     {
-                        UserMenu userMenu = new UserMenu();
                         userMenu.ShowMenu(userTryLogin);
                         userTryLogin.IsLoggedIn = true;
 
