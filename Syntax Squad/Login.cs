@@ -21,10 +21,7 @@ namespace Syntax_Squad
         public void LogIn()
         {
             ACIIART Art = new ACIIART();
-            
-
-            List<User> AllUsers = User.AllUsers(); 
-
+                     
             do
             {
                 Art.PrintArt();
@@ -36,7 +33,7 @@ namespace Syntax_Squad
                 Console.Write("\tPassword: ");
                 string enterPassword = Console.ReadLine();
 
-                User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
+                User userTryLogin = AllTheUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
 
                 if (userTryLogin != null)
                 {
