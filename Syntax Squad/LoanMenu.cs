@@ -9,7 +9,6 @@ namespace Syntax_Squad
     //Noah/Max SUT23
     public class LoanMenu : UserMenu
     {
-        Loan loan = new Loan();
         private bool run = true;
         public override void ShowMenu(User user)
         {
