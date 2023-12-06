@@ -14,10 +14,7 @@ namespace Syntax_Squad
         public override void ShowMenu(User user)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-
-
             run = true;
-
             do
             {
                 Console.Clear();

@@ -38,7 +38,7 @@ namespace Syntax_Squad
                         newAccount.MakeAccount(user);
                         break;
                     case "4":
-                        loanMenu.ShowMenu(user);
+                        loan.ShowMenu(user);
                         break;
                     case "5":
                         user.IsLoggedIn = false;
