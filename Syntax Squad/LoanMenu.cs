@@ -13,10 +13,12 @@ namespace Syntax_Squad
         public override void ShowMenu(User user)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
+            ACIIART Art = new ACIIART();
             run = true;
             do
             {
                 Console.Clear();
+                Art.PrintArt();
                 Console.WriteLine("\t---|| Loan Menu ||---");
                 Console.WriteLine("\t1: Take loan \n\t2: See Loans \n\t3: Return to Main menu");
 
