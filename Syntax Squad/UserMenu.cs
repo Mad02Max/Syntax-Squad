@@ -9,17 +9,17 @@ namespace Syntax_Squad
     //Noah SUT23
     public class UserMenu : Menu
     {
-        
+       
         public override void ShowMenu(User user)
         {
-            TransferMenu transferMenu = new TransferMenu();
-            CreateAccount createAccount = new CreateAccount();
-            LoanMenu loanMenu = new LoanMenu();
 
+            TransferMenu transferMenu = new TransferMenu();
+            CreateAccount newAccount = new CreateAccount();
+
+            
             bool validChoice = false;
             do
             {
-                
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\t---|| User Menu ||---");
                 Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
@@ -30,19 +30,18 @@ namespace Syntax_Squad
                 {
                     case "1":
                         BankAccount.ShowUserBankAccounts(user);
-                        
                         break;
                     case "2":
                         transferMenu.ShowMenu(user);
                         break;
                     case "3":
-                        createAccount.MakeAccount(user);
+                        newAccount.MakeAccount(user);
                         break;
                     case "4":
                         loanMenu.ShowMenu(user);
                         break;
                     case "5":
-                        //logout metod kommer här
+                        user.IsLoggedIn = false;
                         validChoice = true;
                         break;
                     default:

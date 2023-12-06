@@ -10,8 +10,7 @@ namespace Syntax_Squad
     {
         //Simon Ståhl SUT23
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
-        private Login userID = new Login();
-
+        
 
 
         /*public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
@@ -113,22 +112,23 @@ namespace Syntax_Squad
                 var fromAccount = GetBankAccount(fromAccountNumber);
                 var toAccount = GetBankAccount(toAccountNumber);
 
-               
-                if (!loggedInUserAccountNumber.Contains(fromAccountNumber))
-                {
-                    Console.WriteLine("Invalid account number. Transfer can only be made from your own account.");
-                }
-                if (fromAccount.Balance < amount)
-                {
-                    Console.WriteLine("Insufficient funds.");
-                    return;
-                }
+            if (fromAccount == null || toAccount == null || password != userID.Password) // fungerar verkligen detta?????
+            {
+                Console.WriteLine("Invalid account number.");
+                return;
+            }
 
-                if (fromAccount.Balance > amount && password == user.Password)
-                {
-                    fromAccount.Balance -= amount;
-                    toAccount.Balance += amount;
-                    Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
+            if (fromAccount.Balance < amount)
+            {
+                Console.WriteLine("Insufficient funds.");
+                return;
+            }
+
+            if (fromAccount != null && toAccount != null && password == userID.Password)
+            {
+                fromAccount.Balance -= amount;
+                toAccount.Balance += amount;
+                Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
 
                 }
             }
