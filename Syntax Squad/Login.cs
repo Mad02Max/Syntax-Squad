@@ -14,8 +14,7 @@ namespace Syntax_Squad
        private const int MaxAttempts = 3;
 
         public int attempts = 0;
-        private int userID;
-
+        private int userID;     
         /// <summary>
         /// Method for login, checking user list for username and password
         /// </summary>
@@ -28,19 +27,22 @@ namespace Syntax_Squad
 
             do
             {
-                Console.WriteLine("Welcome to Syntax Squad Bank!");
-                Console.WriteLine("Username: ");
+                Art.PrintArt();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\tWelcome to Syntax Squad Bank!");
+                Console.Write("\tUsername: ");
                 string enterUsername = Console.ReadLine();
 
-                Console.WriteLine("Password: ");
+                Console.Write("\tPassword: ");
                 string enterPassword = Console.ReadLine();
 
                 User userTryLogin = AllUsers.Find(x => x.Name == enterUsername && x.Password == enterPassword);
 
                 if (userTryLogin != null)
                 {
-                    Console.WriteLine("Login successful! press enter to continue to meny.");
+                    Console.WriteLine("\tLogin successful! press enter to continue to meny.");                   
                     Console.ReadKey();
+                    Console.Clear();
 
 
 
@@ -61,10 +63,12 @@ namespace Syntax_Squad
                 else
                 {
                     attempts++;
-                    Console.WriteLine($"Incorrect username or password. Attempts left: {MaxAttempts - attempts}");
+                    Console.WriteLine($"\tIncorrect username or password. Attempts left: {MaxAttempts - attempts}");
+                    Console.ReadKey();
+                    Console.Clear() ;
                 }
             } while (attempts < MaxAttempts);
-            Console.WriteLine("Maximum login attempts reached. Account locked.");
+            Console.WriteLine("\tMaximum login attempts reached. Account locked.");
 
 
 
