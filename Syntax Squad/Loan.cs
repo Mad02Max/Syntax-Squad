@@ -17,7 +17,8 @@ namespace Syntax_Squad
         private static double toaltalMoneyAmount;
         private static double loanSize;
         private static List<Loan> loans = new List<Loan>();
-        
+        private static Transfer getBankInfo = new Transfer();
+        private static int toAcc;
 
         /// <summary>
         /// This method checks how big of a loan the user wants and if they are eligable for it
@@ -42,9 +43,18 @@ namespace Syntax_Squad
             if(loanSize <= toaltalMoneyAmount * 5)
             {
                 BankAccount.ShowUserBankAccounts(user);
-
-                AllLoanes(loanSize, user.UserId);
+                List<int> accNr = getBankInfo.loggedInAccountList(user);
+                Console.WriteLine("Insert Account number to transfer to: ");
+                toAcc = int.Parse(Console.ReadLine());
+                var toAccount = getBankInfo.GetBankAccount(toAcc);
+                if (accNr.Contains(toAcc))
+                {
+                    toAccount.Balance += loanSize;
+                    Console.WriteLine($"You have now taken a loan of {loanSize}");
+                    AllLoanes(loanSize, user.UserId);
+                }
             }else Console.WriteLine("You can not borrow that much money with the amount of money you have.");
+            Console.ReadKey();
         }
 
         /// <summary>
