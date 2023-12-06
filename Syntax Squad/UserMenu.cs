@@ -12,9 +12,11 @@ namespace Syntax_Squad
        
         public override void ShowMenu(User user)
         {
-            LoanMenu loanMenu = new LoanMenu();
-            CreateAccount createAccount = new CreateAccount();
+
             TransferMenu transferMenu = new TransferMenu();
+            CreateAccount newAccount = new CreateAccount();
+
+            
             bool validChoice = false;
             do
             {
@@ -33,7 +35,7 @@ namespace Syntax_Squad
                         transferMenu.ShowMenu(user);
                         break;
                     case "3":
-                        createAccount.MakeAccount(user);
+                        newAccount.MakeAccount(user);
                         break;
                     case "4":
                         loanMenu.ShowMenu(user);

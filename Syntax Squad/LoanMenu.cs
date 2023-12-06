@@ -14,7 +14,10 @@ namespace Syntax_Squad
         public override void ShowMenu(User user)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            
+
+
+            run = true;
+
             do
             {
                 Console.Clear();
@@ -26,10 +29,10 @@ namespace Syntax_Squad
                 switch (userInput)
                 {
                     case "1":
-                        loan.TakeOutLoan(user);
+                        Loan.TakeOutLoan(user);
                         break;
                     case "2":
-                        loan.SeeLoans(user);
+                        Loan.SeeLoans(user);
                         break;
                     case "3":
                         run = false;
