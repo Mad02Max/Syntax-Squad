@@ -36,10 +36,10 @@ namespace Syntax_Squad
                         break;
                     case "3":
                         AdminFunctions.ShowCurrentUsers();
-                        
                         break;
                         case "4":
                         user.IsLoggedIn = false;
+                        validChoice = true;
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
