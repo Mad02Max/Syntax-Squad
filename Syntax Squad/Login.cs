@@ -24,8 +24,6 @@ namespace Syntax_Squad
             UserMenu userMenu = new UserMenu();
             AdminMenu adminMenu = new AdminMenu();
 
-            List<User> AllUsers = User.AllUsers();
-
             ACIIART Art = new ACIIART();
 
             do
