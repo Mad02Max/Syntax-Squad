@@ -12,7 +12,7 @@ namespace Syntax_Squad
         ExchangeRateManager manager = new ExchangeRateManager();
         public override void ShowMenu(User user)
         {
-            
+
             ACIIART Art = new ACIIART();
             Console.ForegroundColor = ConsoleColor.Yellow;
             bool validChoice = false;
@@ -28,18 +28,16 @@ namespace Syntax_Squad
                 {
                     case "1":
                         AdminFunctions.AddUser(user);
-                        
                         break;
                     case "2":
                         manager.ChangeExchangeRates();
-                        
                         break;
                     case "3":
                         AdminFunctions.ShowCurrentUsers();
-                        
                         break;
-                        case "4":
+                    case "4":
                         user.IsLoggedIn = false;
+                        validChoice = true;
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
@@ -48,8 +46,8 @@ namespace Syntax_Squad
                 }
 
             } while (!validChoice);
-            
-            
+
+
         }
     }
 }
