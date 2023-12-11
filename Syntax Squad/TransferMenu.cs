@@ -15,7 +15,7 @@ namespace Syntax_Squad
             Console.ForegroundColor = ConsoleColor.Yellow;
             ACIIART Art = new ACIIART();
 
-            bool validChoice = false;
+            bool validChoice = true;
             do
             {
                 Console.Clear();
@@ -33,7 +33,7 @@ namespace Syntax_Squad
                         transfer.TransferBetweenOtherAccounts(user);
                         break;
                     case "3":
-                        validChoice = true;
+                        validChoice = false;
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
@@ -42,7 +42,7 @@ namespace Syntax_Squad
 
 
 
-            } while (!validChoice);
+            } while (validChoice);
         }
     }
 }
