@@ -73,6 +73,12 @@ namespace Syntax_Squad
             Console.ForegroundColor = ConsoleColor.Green;
             while (true)
             {
+                foreach (var user in User.AllTheUsers)
+                {
+                    Console.WriteLine($"User ID: {user.UserId} - User Name: {user.Name}");
+
+                }
+
                 Console.WriteLine("Press enter to show current users in the bank or type exit to return to menu:");
                 string userInput = Console.ReadLine();
 
@@ -82,14 +88,8 @@ namespace Syntax_Squad
                     break;
                 }
 
-                foreach (var user in User.AllTheUsers)
-                {
-                    Console.WriteLine($"User ID: {user.UserId} - User Name: {user.Name}");
-
-                }
-
+                
             }
-
 
         }
     }
