@@ -69,7 +69,7 @@ namespace Syntax_Squad
                         {
                             var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
                             var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
-                            var convertedAmount = amount * 1/fromRate * toRate;
+                            var convertedAmount = amount * 1 / fromRate * toRate;
                             fromAccount.Balance -= amount;
                             toAccount.Balance += convertedAmount;
                             Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
@@ -84,16 +84,16 @@ namespace Syntax_Squad
                         Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {toAccount.Currency}");
                         Console.WriteLine($"\tNew balance for {toAccount.AccountName}: {toAccount.Balance} {toAccount.Currency}");
                     }
-                    
+
 
                 }
-                Console.ReadKey();
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("\tInvalid input, please try again.");
             }
-
+            Console.ReadKey();
 
 
 
@@ -112,64 +112,76 @@ namespace Syntax_Squad
             double amount;
             List<int> loggedInUserAccountNumber = loggedInAccountList(user);
 
-
-            try
+            while (true)
             {
-                Console.Write("\n\tInsert Account number to transfer from: ");
-                fromAccountNumber = int.Parse(Console.ReadLine());
-
-                Console.Write("\n\tInsert Account number to transfer to: ");
-                toAccountNumber = int.Parse(Console.ReadLine());
-
-                Console.Write("\n\tEnter the amount you wish to transfer: ");
-                amount = double.Parse(Console.ReadLine());
-
-                Console.Write("\n\tPlease enter your Password to confirm the transaction:");
-                string password = Console.ReadLine();
-
-                var fromAccount = GetBankAccount(fromAccountNumber);
-                var toAccount = GetBankAccount(toAccountNumber);
-
-                if (fromAccount == null || toAccount == null || password != user.Password) 
+                try
                 {
-                    Console.WriteLine("\tInvalid account number.");
-                    return;
-                }
+                    Console.Write("\n\tInsert Account number to transfer from: ");
+                    fromAccountNumber = int.Parse(Console.ReadLine());
 
-                if (fromAccount.Balance < amount)
-                {
-                    Console.WriteLine("\tInsufficient funds.");
-                    return;
-                }
+                    Console.Write("\n\tInsert Account number to transfer to: ");
+                    toAccountNumber = int.Parse(Console.ReadLine());
 
-                if (fromAccount.Balance > amount && password == user.Password)
-                {
-                    if (fromAccount.Currency != toAccount.Currency)
+                    var fromAccount = GetBankAccount(fromAccountNumber);
+                    var toAccount = GetBankAccount(toAccountNumber);
+
+                    if (fromAccount == null || toAccount == null)
                     {
-                        ExchangeRateManager exchange = new ExchangeRateManager();
-                        if(exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
-                        {
-                            var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
-                            var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
-                            var convertedAmount = amount * fromRate * toRate;
-                            fromAccount.Balance -= amount;
-                            toAccount.Balance += convertedAmount;
-                            Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
-                            
-                        }
+                        Console.WriteLine("\tInvalid account number.");
+                        Console.ReadKey();
+                        return;
                     }
 
-                    fromAccount.Balance -= amount;
-                    toAccount.Balance += amount;
-                    Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                    Console.Write("\n\tPlease enter your Password to confirm the transaction:");
+                    string password = Console.ReadLine();
+                    if(password != user.Password)
+                    {
+                        Console.WriteLine("\tWrong password");
+                        Console.ReadKey();
+                        return;
+                    }
+                   
 
+                    Console.Write("\n\tEnter the amount you wish to transfer: ");
+                    amount = double.Parse(Console.ReadLine());
+
+
+                    if (fromAccount.Balance < amount)
+                    {
+                        Console.WriteLine("\tInsufficient funds.");
+                        return;
+                    }
+
+                    if (fromAccount.Balance > amount && password == user.Password)
+                    {
+                        if (fromAccount.Currency != toAccount.Currency)
+                        {
+                            ExchangeRateManager exchange = new ExchangeRateManager();
+                            if (exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
+                            {
+                                var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
+                                var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
+                                var convertedAmount = amount * fromRate * toRate;
+                                fromAccount.Balance -= amount;
+                                toAccount.Balance += convertedAmount;
+                                Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                                Console.ReadKey();
+                                break;
+                            }
+                        }
+
+
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
+                    Console.WriteLine("\tInvalid input, please try again.");
+                }
+                Console.ReadKey();
+
+
 
             }
-
 
 
 
