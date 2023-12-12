@@ -15,10 +15,10 @@ namespace Syntax_Squad
             Console.WriteLine("\tSet transfer limit");
             do
             {
-                Console.WriteLine("\tWich amount would you want to set as your maximum transfer amount");
+                Console.WriteLine("\tWich amount would you like as your maximum transfer amount");
                 string input = Console.ReadLine();
                 isValidInput = double.TryParse(input, out maxTransfer);
-                
+
                 if (isValidInput)
                 {
                     user.TransferLimit = maxTransfer;
@@ -29,14 +29,31 @@ namespace Syntax_Squad
                     Console.WriteLine("\tInvalid input, enter valid number please");
                 }
 
-            }while(!isValidInput);
-
+            } while (!isValidInput);
+            Console.WriteLine("\tPress enter to return to settings");
             Console.ReadKey();
         }
-        public static void ChangePassword(User user) 
+        public static void ChangePassword(User user)
         {
-            Console.WriteLine("\tPassword change");
 
+            Console.WriteLine("\tChange password");
+            Console.WriteLine($"\tYour current password is: {user.Password}");
+            Console.Write("\tWhat would you like your new password to be? ");
+
+            string newPassword = Console.ReadLine();
+            
+            if (string.IsNullOrWhiteSpace(newPassword))
+            {
+                Console.WriteLine("\tInvalid input, try again..");
+            }
+            else
+            {
+                user.Password = newPassword;
+                Console.WriteLine($"\tYour new password is: {user.Password}");
+                
+            }
+            Console.WriteLine("\tPress enter to return to settings");
+            Console.ReadKey();
         }
     }
 }
