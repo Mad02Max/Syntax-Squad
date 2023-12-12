@@ -28,6 +28,7 @@ namespace Syntax_Squad
 
             do
             {
+                Console.Clear();
                 Art.PrintArt();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\tWelcome to Syntax Squad Bank!");

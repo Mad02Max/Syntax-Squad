@@ -16,12 +16,14 @@ namespace Syntax_Squad
             TransferMenu transferMenu = new TransferMenu();
             CreateAccount newAccount = new CreateAccount();
             LoanMenu loanMenu = new LoanMenu();
+            ACIIART Art = new ACIIART();
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
-            
-            bool validChoice = false;
+            bool validChoice = true;
             do
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Clear();
+                Art.PrintArt();
                 Console.WriteLine("\t---|| User Menu ||---");
                 Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
 
@@ -43,7 +45,7 @@ namespace Syntax_Squad
                         break;
                     case "5":
                         user.IsLoggedIn = false;
-                        validChoice = true;
+                        validChoice = false;
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
@@ -52,7 +54,7 @@ namespace Syntax_Squad
 
                 }
 
-            } while (!validChoice);
+            } while (validChoice);
         }
        
     }
