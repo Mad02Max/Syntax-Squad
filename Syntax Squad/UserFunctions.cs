@@ -15,14 +15,14 @@ namespace Syntax_Squad
             Console.WriteLine("\tSet transfer limit");
             do
             {
-                Console.WriteLine("\tWich amount would you like as your maximum transfer amount");
+                Console.Write("\tWich amount would you like as your maximum transfer amount: ");
                 string input = Console.ReadLine();
                 isValidInput = double.TryParse(input, out maxTransfer);
 
                 if (isValidInput)
                 {
                     user.TransferLimit = maxTransfer;
-                    Console.WriteLine($"\tYour new transfer limit is {user.TransferLimit}");
+                    Console.WriteLine($"\tYour new transfer limit is: {user.TransferLimit}");
                 }
                 else
                 {
