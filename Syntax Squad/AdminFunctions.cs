@@ -18,40 +18,40 @@ namespace Syntax_Squad
         public static void AddUser(User user)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Add new user");
+            Console.WriteLine("\tAdd new user");
             while (true)
             {
                 string newName, newPassword;
 
                 while (true)
                 {
-                    Console.Write("Name of new user: ");
+                    Console.Write("\tName of new user: ");
                     newName = Console.ReadLine();
 
-                    Console.Write("Password: ");
+                    Console.Write("\tPassword: ");
                     newPassword = Console.ReadLine();
 
                     if (!string.IsNullOrWhiteSpace(newName) && !string.IsNullOrWhiteSpace(newPassword))
                     {
                         break;
                     }
-                    Console.WriteLine("Name and password cannot be empty");
+                    Console.WriteLine("\tName and password cannot be empty");
                 }
 
-                Console.Write("User ID: ");
+                Console.Write("\tUser ID: ");
                 int newUserId;
 
                 if (!int.TryParse(Console.ReadLine(), out newUserId))
                 {
-                    Console.WriteLine("Invalid input, use numbers to add User ID");
+                    Console.WriteLine("\tInvalid input, use numbers to add User ID");
 
                 }
                 else
                 {
                     RegularUser newUser = new RegularUser(newName, newPassword, newUserId);
                     User.AllTheUsers.Add(newUser);
-                    Console.WriteLine($"New user {newName} with ID: {newUserId} was added by {user.Name}");
-                    Console.WriteLine("Do you wish to add more users? (y/n)");
+                    Console.WriteLine($"\tNew user {newName} with ID: {newUserId} was added by {user.Name}");
+                    Console.WriteLine("\tDo you wish to add more users? (y/n)");
                     string addMore = Console.ReadLine();
 
                     if (addMore.ToLower() != "y")
@@ -75,16 +75,16 @@ namespace Syntax_Squad
             {
                 foreach (var user in User.AllTheUsers)
                 {
-                    Console.WriteLine($"User ID: {user.UserId} - User Name: {user.Name}");
+                    Console.WriteLine($"\tUser ID: {user.UserId} - User Name: {user.Name}");
 
                 }
 
-                Console.WriteLine("Press enter to show current users in the bank or type exit to return to menu:");
+                Console.WriteLine("\tPress enter to show current users in the bank or type exit to return to menu:");
                 string userInput = Console.ReadLine();
 
                 if (userInput.ToLower() == "exit")
                 {
-                    Console.WriteLine("Returning to menu..");
+                    Console.WriteLine("\tReturning to menu..");
                     break;
                 }
 

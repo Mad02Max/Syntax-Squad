@@ -19,7 +19,7 @@ namespace Syntax_Squad
             ACIIART Art = new ACIIART();
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            bool validChoice = false;
+            bool validChoice = true;
             do
             {
                 Console.Clear();
@@ -45,7 +45,7 @@ namespace Syntax_Squad
                         break;
                     case "5":
                         user.IsLoggedIn = false;
-                        validChoice = true;
+                        validChoice = false;
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
@@ -54,7 +54,7 @@ namespace Syntax_Squad
 
                 }
 
-            } while (!validChoice);
+            } while (validChoice);
         }
        
     }
