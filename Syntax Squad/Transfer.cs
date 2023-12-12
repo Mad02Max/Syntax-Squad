@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Syntax_Squad
 {
@@ -11,9 +12,22 @@ namespace Syntax_Squad
         //Simon Ståhl SUT23
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
 
+        public List<Transfer> transactctionHistory = new List<Transfer>();
+        private double amount;
+        private string currency1;
+        private string currency2;
 
-             
+        public Transfer(int fromAccountNumber, int toAccountNumber, double amount, string currency1, string currency2)
+        {
+            this.fromAccountNumber = fromAccountNumber;
+            this.toAccountNumber = toAccountNumber;
+            this.amount = amount;
+            this.currency1 = currency1;
+            this.currency2 = currency2;
+        }
 
+        public int fromAccountNumber;
+        public int toAccountNumber;
         /// <summary>
         /// Metod för överföring emellan egna konton. 
         /// PIN behövs inte för egen överföring då vi loggat in en gång redan.
@@ -23,9 +37,7 @@ namespace Syntax_Squad
         public void TransferBetweenOwnAccounts(User user)
         {
             Console.Clear();
-            int fromAccountNumber;
-            int toAccountNumber;
-            double amount;
+            
             List<int> loggedInUserAccountNumber = loggedInAccountList(user);
 
             try
@@ -52,9 +64,11 @@ namespace Syntax_Squad
                         {
                             var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
                             var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
-                            var convertedAmount = amount * 1 / fromRate * toRate;
+                            var convertedAmount = amount * (1 / fromRate) * toRate;
                             fromAccount.Balance -= amount;
                             toAccount.Balance += convertedAmount;
+                            var transaction = new Transfer(fromAccountNumber, toAccountNumber, amount, fromAccount.Currency, toAccount.Currency);
+                            transactctionHistory.Add(transaction);
                             Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
                             Console.WriteLine($"\tNew balance for {toAccount.AccountName}: {toAccount.Balance} {toAccount.Currency}");
                         }
@@ -144,7 +158,7 @@ namespace Syntax_Squad
                             {
                                 var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
                                 var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
-                                var convertedAmount = amount * fromRate * toRate;
+                                var convertedAmount = amount * (1/ fromRate) * toRate;
                                 fromAccount.Balance -= amount;
                                 toAccount.Balance += convertedAmount;
                                 Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
@@ -191,6 +205,11 @@ namespace Syntax_Squad
                 }
             }
             return loggedInUserAccountNumber;
+        }
+
+        public void PrintTransferHistory()
+        {
+            foreach (var history in transaction)
         }
 
     }
