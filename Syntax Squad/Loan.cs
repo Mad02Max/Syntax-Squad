@@ -26,6 +26,7 @@ namespace Syntax_Squad
         public static void TakeOutLoan(User user)
         {
             Console.Clear();
+            toaltalMoneyAmount = 0;
             foreach (BankAccount bankAccount in BankAccount.bankAccounts)
             {
                 if (bankAccount.ID == user.UserId)
@@ -42,9 +43,8 @@ namespace Syntax_Squad
 
             if(loanSize <= toaltalMoneyAmount * 5)
             {
-                BankAccount.ShowUserBankAccounts(user);
                 List<int> accNr = getBankInfo.loggedInAccountList(user);
-                Console.WriteLine("Insert Account number to transfer to: ");
+                Console.WriteLine("Insert Account number of the account you want the money: ");
                 toAcc = int.Parse(Console.ReadLine());
                 var toAccount = getBankInfo.GetBankAccount(toAcc);
                 if (accNr.Contains(toAcc))

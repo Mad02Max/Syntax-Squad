@@ -12,37 +12,37 @@ namespace Syntax_Squad
         Transfer transfer = new Transfer();
         public override void ShowMenu(User user)
         {
-            
-            bool validChoice = false;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            ACIIART Art = new ACIIART();
+
+            bool validChoice = true;
             do
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Clear();
+                Art.PrintArt();
                 Console.WriteLine("\t---|| Transfer Menu ||---");
-                Console.WriteLine("\t1: Withdraw money \n\t2: Transfer between own accounts \n\t3: Transfer to another user \n\t4: Return to Main menu");
+                Console.WriteLine("\t1: Transfer between own accounts  \n\t2: Transfer to another user \n\t3: Return to menu");
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "1":
-                        
-                        break;
-                    case "2":
                         transfer.TransferBetweenOwnAccounts(user);
                         break;
-                    case "3":
+                    case "2":
                         transfer.TransferBetweenOtherAccounts(user);
                         break;
-                    case "4":
-                        validChoice = true;
+                    case "3":
+                        validChoice = false;
                         break;
                     default:
                         Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
                 }
 
-                Console.ReadKey();
 
-            } while (!validChoice);
+
+            } while (validChoice);
         }
     }
 }
