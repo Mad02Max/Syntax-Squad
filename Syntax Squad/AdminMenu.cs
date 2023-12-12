@@ -21,7 +21,7 @@ namespace Syntax_Squad
                 Console.Clear();
                 Art.PrintArt();
                 Console.WriteLine("\t---|| Admin Menu ||---");
-                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Remove Users \n\t5: Logout");
+                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Remove User \n\t5: Logout");
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
@@ -36,7 +36,7 @@ namespace Syntax_Squad
                         AdminFunctions.ShowCurrentUsers();
                         break;
                     case "4":
-                        
+                        AdminFunctions.RemoveUser();
                         break;
                     case "5":
                         user.IsLoggedIn = false;
