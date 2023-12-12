@@ -12,24 +12,7 @@ namespace Syntax_Squad
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
 
 
-
-        /*public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
-        {
-
-
-            var fromAccount = GetBankAccount(fromAccountNumber);
-            if (fromAccount.Balance == null || fromAccount.Balance < 0 && password == Userpassword)
-            {
-                Console.WriteLine("Insufficient fund on selected Account.");
-                return;
-            }
-            fromAccount.Balance = amount;
-
-            Console.WriteLine($"Withdraw request successfull. Please take your money.");
-            Console.WriteLine($"Remaining Balance for {fromAccount}: {fromAccount.Balance}");
-        }*/
-
-
+             
 
         /// <summary>
         /// Metod för överföring emellan egna konton. 
