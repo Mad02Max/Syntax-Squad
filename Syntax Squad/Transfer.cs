@@ -16,6 +16,7 @@ namespace Syntax_Squad
         private double amount;
         private string currency1;
         private string currency2;
+        ExchangeRateManager exchange = new ExchangeRateManager();
 
         public Transfer(int fromAccountNumber, int toAccountNumber, double amount, string currency1, string currency2)
         {
@@ -59,7 +60,7 @@ namespace Syntax_Squad
                 {
                     if (fromAccount.Currency != toAccount.Currency)
                     {
-                        ExchangeRateManager exchange = new ExchangeRateManager();
+                        
                         if (exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
                         {
                             var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
