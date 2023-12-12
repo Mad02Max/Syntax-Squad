@@ -23,6 +23,7 @@ namespace Syntax_Squad
                 Console.WriteLine("\t---|| Admin Menu ||---");
                 Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Remove User \n\t5: Logout");
 
+
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
