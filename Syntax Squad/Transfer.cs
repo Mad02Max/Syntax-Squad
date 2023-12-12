@@ -199,14 +199,32 @@ namespace Syntax_Squad
             return loggedInUserAccountNumber;
         }
 
-        public void PrintTransferHistory()
+        public static void PrintTransferHistoryAdmin()
         {
-            Console.WriteLine("Transaction History:");
+            Console.WriteLine("\tTransaction History:");
 
             foreach (var transaction in transactctionHistory)
             {
-                Console.WriteLine($"Transaction: From {transaction.fromAccountNumber} to {transaction.toAccountNumber} - Amount: {transaction.amount} {transaction.Currency} to {transaction.amount} {transaction.Currency} - Time: {transaction.transactionTime}");
+                Console.WriteLine($"\tTransaction: From {transaction.fromAccountNumber} to {transaction.toAccountNumber} - Amount: {transaction.amount} {transaction.Currency} - Time: {transaction.transactionTime}");
             }
+        }
+
+        public static void PrintTransactionHistoryUser(User user)
+        {
+            foreach(var account in BankAccount.bankAccounts)
+            {
+                if(account.Owner == user.Name)
+                {
+                    foreach (var transaction in transactctionHistory)
+                    {
+
+                        Console.WriteLine($"\tTransaction: From {transaction.fromAccountNumber} to {transaction.toAccountNumber} - Amount: {transaction.amount} {transaction.Currency} - Time: {transaction.transactionTime}");
+
+
+                    }
+                }
+            }
+            
         }
 
         public static void transferHistory(int fromAccount, int toAccount, string currency, double Amount )
