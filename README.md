@@ -72,4 +72,4 @@ Best regards,
 - Dericay
 
 ## **Links**
-
+* Trello - https://trello.com/invite/b/7XpagnL6/ATTI52d6ec1ef534e70768a7acd38725da0b6B62E640/syntax-squad
