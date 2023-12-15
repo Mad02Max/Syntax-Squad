@@ -214,6 +214,8 @@ namespace Syntax_Squad
             {
                 Console.WriteLine($"\tTransaction: From {transaction.fromAccountNumber} to {transaction.toAccountNumber} - Amount: {transaction.amount} {transaction.Currency} - Time: {transaction.transactionTime}");
             }
+            Console.WriteLine("Press enter to return to menu");
+            Console.ReadKey();
         }
 
         public static void PrintTransactionHistoryUser(User user)
@@ -231,6 +233,8 @@ namespace Syntax_Squad
                     }
                 }
             }
+            Console.WriteLine("Press enter to return to menu");
+            Console.ReadKey();
 
         }
 
