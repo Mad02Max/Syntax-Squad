@@ -14,6 +14,7 @@ namespace Syntax_Squad
         public string Password { get; set; }
         public bool IsAdmin { get; set; } = false;
         public bool IsLoggedIn { get; set; } = false;
+        public double TransferLimit { get; set; } 
 
         public static List<User> AllTheUsers = new List<User>();
 

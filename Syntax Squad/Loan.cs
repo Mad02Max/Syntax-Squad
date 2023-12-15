@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,12 +14,15 @@ namespace Syntax_Squad
 
         private double loanAmount {  get; set; }
         private int accountID { get; set; }
+        private int accountNumber { get; set; }
 
         private static double toaltalMoneyAmount;
         private static double loanSize;
         private static List<Loan> loans = new List<Loan>();
         private static Transfer getBankInfo = new Transfer();
         private static int toAcc;
+        private static ExchangeRateManager exchangeRate = new ExchangeRateManager();
+
 
         /// <summary>
         /// This method checks how big of a loan the user wants and if they are eligable for it
@@ -31,13 +35,16 @@ namespace Syntax_Squad
             {
                 if (bankAccount.ID == user.UserId)
                 {
-                    toaltalMoneyAmount += bankAccount.Balance;
+                    var fromRate = Convert.ToDouble(exchangeRate.exchangeRates[bankAccount.Currency]);
+                    var toRate = Convert.ToDouble(exchangeRate.exchangeRates["SEK"]);
+                    var convertedAmount = bankAccount.Balance * (1 / fromRate) * toRate;
+                    toaltalMoneyAmount += convertedAmount;
                 }
             }
             Console.WriteLine($"\nYou can only take out a loan that is 5 times bigger than your total balance" +
-                $"\n\t Your toatal balance is {toaltalMoneyAmount}" +
+                $"\n\t Your toatal balance is {toaltalMoneyAmount} SEK" +
                 $"\n\t And the loan will have a 4.5% intrest" +
-                $"\n How big of a loan do you want to take?");
+                $"\n How big of a loan do you want to take? (SEK)");
 
             double.TryParse(Console.ReadLine(), out loanSize);
 
@@ -49,9 +56,11 @@ namespace Syntax_Squad
                 var toAccount = getBankInfo.GetBankAccount(toAcc);
                 if (accNr.Contains(toAcc))
                 {
-                    toAccount.Balance += loanSize;
+                    var toRate = Convert.ToDouble(exchangeRate.exchangeRates[toAccount.Currency]);
+                    var convertedLoan = loanSize * toRate;
+                    toAccount.Balance += convertedLoan;
                     Console.WriteLine($"You have now taken a loan of {loanSize}");
-                    AllLoanes(loanSize, user.UserId);
+                    AllLoanes(loanSize, user.UserId, toAcc);
                 }
             }else Console.WriteLine("You can not borrow that much money with the amount of money you have.");
             Console.ReadKey();
@@ -78,12 +87,13 @@ namespace Syntax_Squad
         /// </summary>
         /// <param name="loanS"></param>
         /// <param name="accountId"></param>
-        public static void AllLoanes(double loanS, int accountId)
+        public static void AllLoanes(double loanS, int accountId, int toAcc)
         {
             Loan newLoan = new Loan
             {
                 loanAmount = loanS,
-                accountID = accountId
+                accountID = accountId,
+                accountNumber = toAcc
             };
             loans.Add(newLoan);
         }
