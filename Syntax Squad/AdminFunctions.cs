@@ -11,7 +11,6 @@ namespace Syntax_Squad
     {
         /// <summary>
         /// AddUser function makes it possible for admins to add more users in the program
-        /// ShowCurrentUsers function loops through AllTheUser list and prints them out
         /// </summary>
         /// <param name="user"></param>
 
@@ -91,6 +90,51 @@ namespace Syntax_Squad
                 
             }
 
+
         }
+        /// <summary>
+        /// Method that lets admin remove users
+        /// </summary>
+        public static void RemoveUser()
+        {
+            Console.ForegroundColor= ConsoleColor.Green;
+            Console.WriteLine("Remove User");
+
+            {
+                while (true)
+                {
+                    Console.Write("Enter User ID to remove: ");
+                    int userIdRemove;
+
+                    if(!int.TryParse(Console.ReadLine(), out userIdRemove))
+                    {
+                        Console.WriteLine("Invalid input. Please enter a valid User ID");
+                    }
+                    else
+                    {
+                        User userToRemove = User.AllTheUsers.FirstOrDefault(x => x.UserId == userIdRemove);
+
+                        if (userToRemove != null)
+                        {
+                            User.AllTheUsers.Remove(userToRemove);
+                            Console.WriteLine($"User with ID {userIdRemove} removed successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"User with ID {userIdRemove} not found.");
+                        }
+                        Console.WriteLine("Do you wish to remove more users? Y/N");
+                        string removeMore = Console.ReadLine();
+
+                        if (removeMore.ToLower() != "y")
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+       
     }
 }
