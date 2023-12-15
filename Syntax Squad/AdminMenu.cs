@@ -44,8 +44,12 @@ namespace Syntax_Squad
                         Transfer.PrintTransferHistoryAdmin();
                         break;
                     case "6":
-
+                        Loan.SeeAllLoans();
+                        break;
                     case "7":
+                        CreateAccount.AdminPrintNewAccounts();
+                        break;
+                    case "8":
                         user.IsLoggedIn = false;
                         validChoice = false;
                         break;

@@ -12,7 +12,7 @@ namespace Syntax_Squad
 
         // Max SUT23
 
-        private double loanAmount {  get; set; }
+        private double loanAmount { get; set; }
         private int accountID { get; set; }
         private int accountNumber { get; set; }
 
@@ -29,7 +29,7 @@ namespace Syntax_Squad
         /// </summary>
         public static void TakeOutLoan(User user)
         {
-            var convertedAmount
+            var convertedAmount = 0.0;
             Console.Clear();
             toaltalMoneyAmount = 0;
             foreach (BankAccount bankAccount in BankAccount.bankAccounts)
@@ -49,7 +49,7 @@ namespace Syntax_Squad
 
             double.TryParse(Console.ReadLine(), out loanSize);
 
-            if(loanSize <= convertedAmount * 5)
+            if (loanSize <= convertedAmount * 5)
             {
                 List<int> accNr = getBankInfo.loggedInAccountList(user);
                 Console.WriteLine("Insert Account number of the account you want the money: ");
@@ -63,7 +63,8 @@ namespace Syntax_Squad
                     Console.WriteLine($"You have now taken a loan of {convertedAmount}");
                     AllLoanes(loanSize, user.UserId, toAcc);
                 }
-            }else Console.WriteLine("You can not borrow that much money with the amount of money you have.");
+            }
+            else Console.WriteLine("You can not borrow that much money with the amount of money you have.");
             Console.ReadKey();
         }
 
@@ -83,11 +84,12 @@ namespace Syntax_Squad
             Console.ReadKey();
         }
 
-        public static void SeeAllLoans(User user)
+        public static void SeeAllLoans()
         {
+            Console.Clear();
             foreach (Loan loan in loans)
             {
-                    Console.Write($"\n\t Loan of: {loan.loanAmount} by {loan.accountID} to account {loan.accountNumber}");
+                Console.Write($"\n\t Loan of: {loan.loanAmount} by {loan.accountID} to account {loan.accountNumber}");
             }
             Console.ReadKey();
         }
