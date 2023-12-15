@@ -225,7 +225,7 @@ namespace Syntax_Squad
             }
 
             Console.WriteLine($"\tPress enter to return to menu");
-            Console.WriteLine("\tPress enter to return to menu");
+           
 
             Console.ReadKey();
         }
@@ -252,7 +252,7 @@ namespace Syntax_Squad
 
             Console.WriteLine($"\tPress enter to return to menu");
 
-            Console.WriteLine("\tPress enter to return to menu");
+            
 
             Console.ReadKey();
 
