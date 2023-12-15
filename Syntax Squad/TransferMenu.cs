@@ -21,7 +21,7 @@ namespace Syntax_Squad
                 Console.Clear();
                 Art.PrintArt();
                 Console.WriteLine("\t---|| Transfer Menu ||---");
-                Console.WriteLine("\t1: Transfer between own accounts  \n\t2: Transfer to another user \n\t3: Return to menu");
+                Console.WriteLine("\t1: Transfer between own accounts  \n\t2: Transfer to another user \n\t3: Transaction history \n\t4: Return to menu");
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
@@ -33,6 +33,9 @@ namespace Syntax_Squad
                         transfer.TransferBetweenOtherAccounts(user);
                         break;
                     case "3":
+                        Transfer.PrintTransactionHistoryUser(user);
+                        break;
+                    case "4":
                         validChoice = false;
                         break;
                     default:

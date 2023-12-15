@@ -18,7 +18,6 @@ namespace Syntax_Squad
 
         public static List<User> AllTheUsers = new List<User>();
 
-       
         public static void ExistingUsers()
         {
             AllTheUsers.Add(new Admin("Syntax", "Squad", 1337));
