@@ -1,8 +1,5 @@
 # Syntax Squad
 # **Table of Contents**
-
-# Introduction
-
 * Features 
 
 * Code structure
