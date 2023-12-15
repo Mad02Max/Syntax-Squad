@@ -18,17 +18,21 @@ I'm excited to present our group project – a small-scale bank application deve
 
 * Customer login - Access your account with your username and password
   
-* Admin: Gain access to specific administrative functionalitiesCustomer functionalities:
+* Admin: Gain access to specific administrative functionalities
   
-* Create new accounts - Create a new personalized bank account 
+* Customer functionalities: Create new accounts - Create a new personalized bank account 
 
-* Transfer  - Move money between / to accounts
+* Transfer: Move money between / to accounts
 
-* Balance inquiry - Check your accounts and balance
+* Balance inquiry: Check your accounts and balance
 
-* Transaction history - review your transactions
+* Transaction history: Review your transactions
 
-* Loan request - Request a loan with a set interest rateAdmin functionalities: * User management - create new user accounts 
+* Loan request - Request a loan with a set interest rate
+
+#* Admin functionalities:
+
+* User management - create new user accounts 
 
 * Adjust exchange rates
 
