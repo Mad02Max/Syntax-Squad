@@ -20,7 +20,7 @@ I'm excited to present our group project – a small-scale bank application deve
   
 * Admin: Gain access to specific administrative functionalities
   
-#* Customer functionalities:#
+** Customer functionalities:**
 
 * Create new accounts - Create a new personalized bank account 
 
@@ -32,7 +32,7 @@ I'm excited to present our group project – a small-scale bank application deve
 
 * Loan request - Request a loan with a set interest rate
 
-#* Admin functionalities:#
+** Admin functionalities:**
 
 * User management - create new user accounts 
 
