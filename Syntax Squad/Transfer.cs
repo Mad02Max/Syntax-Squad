@@ -20,6 +20,8 @@ namespace Syntax_Squad
         private int fromAccountNumber { get; set; }
         private int toAccountNumber { get; set; }
         private DateTime transactionTime { get; set; }
+        UserFunctions userFunctions = new UserFunctions();
+
         /// <summary>
         /// Metod för överföring emellan egna konton. 
         /// PIN behövs inte för egen överföring då vi loggat in en gång redan.
@@ -46,34 +48,35 @@ namespace Syntax_Squad
 
                 var fromAccount = GetBankAccount(fromAccountNumber);
                 var toAccount = GetBankAccount(toAccountNumber);
-
-                if (fromAccount.Balance > amount && loggedInUserAccountNumber.Contains(fromAccountNumber))
+                if (user.TransferLimit >= amount)
                 {
-                    if (fromAccount.Currency != toAccount.Currency)
+                    if (fromAccount.Balance > amount && loggedInUserAccountNumber.Contains(fromAccountNumber))
                     {
-
-                        if (exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
+                        if (fromAccount.Currency != toAccount.Currency)
                         {
-                            var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
-                            var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
-                            var convertedAmount = amount * (1 / fromRate) * toRate;
+
+                            if (exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
+                            {
+                                var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
+                                var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
+                                var convertedAmount = amount * (1 / fromRate) * toRate;
+                                fromAccount.Balance -= amount;
+                                toAccount.Balance += convertedAmount;
+                                transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
+                                Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                                Console.WriteLine($"\tNew balance for {toAccount.AccountName}: {toAccount.Balance} {toAccount.Currency}");
+                            }
+                        }
+
+                        else
+                        {
                             fromAccount.Balance -= amount;
-                            toAccount.Balance += convertedAmount;
-                            transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
-                            Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                            toAccount.Balance += amount;
+                            Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {toAccount.Currency}");
                             Console.WriteLine($"\tNew balance for {toAccount.AccountName}: {toAccount.Balance} {toAccount.Currency}");
+                            transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
                         }
                     }
-
-                    else
-                    {
-                        fromAccount.Balance -= amount;
-                        toAccount.Balance += amount;
-                        Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {toAccount.Currency}");
-                        Console.WriteLine($"\tNew balance for {toAccount.AccountName}: {toAccount.Balance} {toAccount.Currency}");
-                        transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
-                    }
-
 
                 }
 
@@ -140,28 +143,29 @@ namespace Syntax_Squad
                         Console.WriteLine("\tInsufficient funds.");
                         return;
                     }
-
-                    if (fromAccount.Balance > amount && password == user.Password)
+                    if (user.TransferLimit >= amount)
                     {
-                        if (fromAccount.Currency != toAccount.Currency)
+                        if (fromAccount.Balance > amount && password == user.Password)
                         {
-                            ExchangeRateManager exchange = new ExchangeRateManager();
-                            if (exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
+                            if (fromAccount.Currency != toAccount.Currency)
                             {
-                                var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
-                                var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
-                                var convertedAmount = amount * (1 / fromRate) * toRate;
-                                fromAccount.Balance -= amount;
-                                toAccount.Balance += convertedAmount;
-                                transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
-                                Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
-                                Console.ReadKey();
-                                break;
+                                ExchangeRateManager exchange = new ExchangeRateManager();
+                                if (exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
+                                {
+                                    var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
+                                    var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
+                                    var convertedAmount = amount * (1 / fromRate) * toRate;
+                                    fromAccount.Balance -= amount;
+                                    toAccount.Balance += convertedAmount;
+                                    transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
+                                    Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                                    Console.ReadKey();
+                                    break;
+                                }
                             }
                         }
-
-
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -169,11 +173,7 @@ namespace Syntax_Squad
                 }
                 Console.ReadKey();
 
-
-
             }
-
-
 
         }
 
@@ -211,9 +211,9 @@ namespace Syntax_Squad
 
         public static void PrintTransactionHistoryUser(User user)
         {
-            foreach(var account in BankAccount.bankAccounts)
+            foreach (var account in BankAccount.bankAccounts)
             {
-                if(account.Owner == user.Name)
+                if (account.Owner == user.Name)
                 {
                     foreach (var transaction in transactctionHistory)
                     {
@@ -224,10 +224,10 @@ namespace Syntax_Squad
                     }
                 }
             }
-            
+
         }
 
-        public static void transferHistory(int fromAccount, int toAccount, string currency, double Amount )
+        public static void transferHistory(int fromAccount, int toAccount, string currency, double Amount)
         {
             Transfer transactionHistory = new Transfer
             {
