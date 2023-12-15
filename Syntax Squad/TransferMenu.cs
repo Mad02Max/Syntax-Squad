@@ -39,7 +39,6 @@ namespace Syntax_Squad
                         validChoice = false;
                         break;
                     default:
-                        Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
                 }
 
