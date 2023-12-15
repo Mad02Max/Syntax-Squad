@@ -11,8 +11,12 @@ namespace Syntax_Squad
     // Max SUT23
 
     internal class CreateAccount
-    {       
-        
+    {
+        private string Name { get; set; }
+        private string accType { get; set; }
+        private int accountID { get; set; }
+        private int accNumber { get; set; }
+
         private string accountName;
         private string accountType;
         private int accountNumber;
@@ -22,6 +26,8 @@ namespace Syntax_Squad
         private string accountOwner;
 
         private BankAccount createdAccount;
+
+        public static List<CreateAccount> newAccounts = new List<CreateAccount>();
 
         /// <summary>
         /// Starts the process of creating a new bankaccount for the user so they can specify all the nesecary information.
@@ -47,6 +53,7 @@ namespace Syntax_Squad
                 if(correct.ToLower() == "y" || correct.ToLower() == "yes")
                 {
                     CreateNewAccount();
+                    AllNewAccounts(accountName, accountType, userId, accountNumber);
                     create = false;
                 }
             }
@@ -195,6 +202,17 @@ namespace Syntax_Squad
                 }   else Console.WriteLine("That is not a valid input");
             }
             return accountType;
+        }
+        public static void AllNewAccounts(string Name,string accountType, int accountId, int toAcc)
+        {
+            CreateAccount newAccount = new CreateAccount
+            {
+                Name = Name,
+                accType = accountType,
+                accountID = accountId,
+                accNumber = toAcc
+            };
+            newAccounts.Add(newAccount);
         }
 
     }
