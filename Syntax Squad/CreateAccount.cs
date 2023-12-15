@@ -14,7 +14,7 @@ namespace Syntax_Squad
     {
         private string Name { get; set; }
         private string accType { get; set; }
-        private int accountID { get; set; }
+        private int userID { get; set; }
         private int accNumber { get; set; }
 
         private string accountName;
@@ -203,13 +203,27 @@ namespace Syntax_Squad
             }
             return accountType;
         }
-        public static void AllNewAccounts(string Name,string accountType, int accountId, int toAcc)
+
+        public static void AdminPrintNewAccounts()
+        {
+            foreach(CreateAccount account in newAccounts)
+            {
+                Console.WriteLine($"\n Bank account name: {account.Name}" +
+                    $"\n UserId: {account.userID}" +
+                    $"\n With currency type: {account.accType}" +
+                    $"\n Account Number: {account.accNumber}");
+            }
+
+        }
+
+
+        public static void AllNewAccounts(string Name,string accountType, int userId, int toAcc)
         {
             CreateAccount newAccount = new CreateAccount
             {
                 Name = Name,
                 accType = accountType,
-                accountID = accountId,
+                userID = userId,
                 accNumber = toAcc
             };
             newAccounts.Add(newAccount);
