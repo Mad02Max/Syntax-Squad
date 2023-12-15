@@ -29,6 +29,7 @@ namespace Syntax_Squad
         /// </summary>
         public static void TakeOutLoan(User user)
         {
+            var convertedAmount
             Console.Clear();
             toaltalMoneyAmount = 0;
             foreach (BankAccount bankAccount in BankAccount.bankAccounts)
@@ -37,7 +38,7 @@ namespace Syntax_Squad
                 {
                     var fromRate = Convert.ToDouble(exchangeRate.exchangeRates[bankAccount.Currency]);
                     var toRate = Convert.ToDouble(exchangeRate.exchangeRates["SEK"]);
-                    var convertedAmount = bankAccount.Balance * (1 / fromRate) * toRate;
+                    convertedAmount = bankAccount.Balance * (1 / fromRate) * toRate;
                     toaltalMoneyAmount += convertedAmount;
                 }
             }
@@ -48,7 +49,7 @@ namespace Syntax_Squad
 
             double.TryParse(Console.ReadLine(), out loanSize);
 
-            if(loanSize <= toaltalMoneyAmount * 5)
+            if(loanSize <= convertedAmount * 5)
             {
                 List<int> accNr = getBankInfo.loggedInAccountList(user);
                 Console.WriteLine("Insert Account number of the account you want the money: ");
@@ -59,7 +60,7 @@ namespace Syntax_Squad
                     var toRate = Convert.ToDouble(exchangeRate.exchangeRates[toAccount.Currency]);
                     var convertedLoan = loanSize * toRate;
                     toAccount.Balance += convertedLoan;
-                    Console.WriteLine($"You have now taken a loan of {loanSize}");
+                    Console.WriteLine($"You have now taken a loan of {convertedAmount}");
                     AllLoanes(loanSize, user.UserId, toAcc);
                 }
             }else Console.WriteLine("You can not borrow that much money with the amount of money you have.");
@@ -69,7 +70,7 @@ namespace Syntax_Squad
         /// <summary>
         /// Makes it so the user can see what outgoing loans they have
         /// </summary>
-        public static void SeeLoans(User user)
+        public static void SeeUserLoans(User user)
         {
             Console.Clear();
             foreach (Loan loan in loans)
@@ -82,6 +83,14 @@ namespace Syntax_Squad
             Console.ReadKey();
         }
 
+        public static void SeeAllLoans(User user)
+        {
+            foreach (Loan loan in loans)
+            {
+                    Console.Write($"\n\t Loan of: {loan.loanAmount} by {loan.accountID} to account {loan.accountNumber}");
+            }
+            Console.ReadKey();
+        }
         /// <summary>
         /// Adds the new loan to a list were all loans are keept
         /// </summary>
