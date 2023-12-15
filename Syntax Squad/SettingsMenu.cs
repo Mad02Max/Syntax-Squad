@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Syntax_Squad
 {
+    //Noah SUT23
     public class SettingsMenu : Menu
     {
         public override void ShowMenu(User user)
@@ -20,7 +21,7 @@ namespace Syntax_Squad
                 Art.PrintArt();
 
                 Console.WriteLine("\t---|| Settings ||---");
-                Console.WriteLine("\t1: Set transfer limit \n\t2: Change password \n\t3: Return to menu");
+                Console.WriteLine("\t1: Set transfer limit \n\t2: Change password \n\t3: Close Account \n\t4: Return to menu");
                 string input = Console.ReadLine();
 
                 switch (input)
@@ -32,7 +33,12 @@ namespace Syntax_Squad
                         UserFunctions.ChangePassword(user);
                         break;
                     case "3":
+                        UserFunctions.CloseAccount(user);
+                        break;
+                    case "4":
                         validChoice = false;
+                        break;
+                    default:
                         break;
                 }
 
