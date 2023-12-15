@@ -48,6 +48,7 @@ namespace Syntax_Squad
                     case "6":
                         user.IsLoggedIn = false;
                         validChoice = false;
+                        Login.ResetAttempts();
                         break;
                     default:
                         break;
