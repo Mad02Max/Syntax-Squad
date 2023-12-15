@@ -18,9 +18,7 @@ I'm excited to present our group project – a small-scale bank application deve
 
 Customer login - Access your account with your username and password
 
-
 Admin - Gain access to specific administrative functionalities
-
 
 Customer functionalities:
 
@@ -34,7 +32,6 @@ Customer functionalities:
 
 - Loan request - Request a loan with a set interest rate
 
-****
 
 Admin functionalities: 
 
