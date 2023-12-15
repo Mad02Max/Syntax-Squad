@@ -32,7 +32,6 @@ Customer functionalities:
 
 - Loan request - Request a loan with a set interest rate
 
-
 Admin functionalities: 
 
 - User management - create new user accounts 
