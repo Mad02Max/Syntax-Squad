@@ -7,33 +7,33 @@ using System.Threading.Tasks;
 namespace Syntax_Squad
 {
     //Noah SUT23
-    public class TransferMenu : UserMenu
+    public class SettingsMenu : Menu
     {
-        Transfer transfer = new Transfer();
         public override void ShowMenu(User user)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
             ACIIART Art = new ACIIART();
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             bool validChoice = true;
             do
             {
                 Console.Clear();
                 Art.PrintArt();
-                Console.WriteLine("\t---|| Transfer Menu ||---");
-                Console.WriteLine("\t1: Transfer between own accounts  \n\t2: Transfer to another user \n\t3: Transaction history \n\t4: Return to menu");
 
-                string userInput = Console.ReadLine();
-                switch (userInput)
+                Console.WriteLine("\t---|| Settings ||---");
+                Console.WriteLine("\t1: Set transfer limit \n\t2: Change password \n\t3: Close Account \n\t4: Return to menu");
+                string input = Console.ReadLine();
+
+                switch (input)
                 {
                     case "1":
-                        transfer.TransferBetweenOwnAccounts(user);
+                        UserFunctions.SetTransferLimit(user);
                         break;
                     case "2":
-                        transfer.TransferBetweenOtherAccounts(user);
+                        UserFunctions.ChangePassword(user);
                         break;
                     case "3":
-                        Transfer.PrintTransactionHistoryUser(user);
+                        UserFunctions.CloseAccount(user);
                         break;
                     case "4":
                         validChoice = false;
@@ -43,8 +43,8 @@ namespace Syntax_Squad
                 }
 
 
-
             } while (validChoice);
+
         }
     }
 }

@@ -10,46 +10,57 @@ namespace Syntax_Squad
     public class AdminMenu : Menu
     {
         ExchangeRateManager manager = new ExchangeRateManager();
+
         public override void ShowMenu(User user)
         {
-            
+
             ACIIART Art = new ACIIART();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            bool validChoice = false;
+            bool validChoice = true;
             do
             {
                 Console.Clear();
                 Art.PrintArt();
                 Console.WriteLine("\t---|| Admin Menu ||---");
-                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Logout");
+                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Remove User \n\t5: Transfer history \n\t6: Loan history \n\t7: Logout");
+
 
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "1":
                         AdminFunctions.AddUser(user);
-                        
                         break;
                     case "2":
                         manager.ChangeExchangeRates();
-                        
                         break;
                     case "3":
                         AdminFunctions.ShowCurrentUsers();
-                        
                         break;
-                        case "4":
+                    case "4":
+                        AdminFunctions.RemoveUser();
+                        break;
+                    case "5":
+                        Transfer.PrintTransferHistoryAdmin();
+                        break;
+                    case "6":
+                        Loan.SeeAllLoans();
+                        break;
+                    case "7":
+                        CreateAccount.AdminPrintNewAccounts();
+                        break;
+                    case "8":
                         user.IsLoggedIn = false;
+                        validChoice = false;
                         break;
                     default:
-                        Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
 
                 }
 
-            } while (!validChoice);
-            
-            
+            } while (validChoice);
+
+
         }
     }
 }

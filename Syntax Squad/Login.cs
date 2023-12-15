@@ -13,7 +13,7 @@ namespace Syntax_Squad
        
        private const int MaxAttempts = 3;
 
-        public int attempts = 0;
+        public static int attempts = 0;
         private int userID;     
         /// <summary>
         /// Method for login, checking user list for username and password
@@ -28,6 +28,7 @@ namespace Syntax_Squad
 
             do
             {
+                Console.Clear();
                 Art.PrintArt();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\tWelcome to Syntax Squad Bank!");
@@ -73,17 +74,11 @@ namespace Syntax_Squad
 
 
 
-        } /// <summary>
-          /// Method to get user ID
-          /// </summary>
-        public int GetUserID()
-        {
-            return userID;
         }
         /// <summary>
         /// Method for reseting attempts
         /// </summary>
-        public void ResetAttempt()
+        public static void ResetAttempts()
         {
             attempts = 0;
         }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
+using static System.TimeZoneInfo;
 
 namespace Syntax_Squad
 {
@@ -10,25 +12,14 @@ namespace Syntax_Squad
     {
         //Simon Ståhl SUT23
         private List<BankAccount> transferAccounts = BankAccount.bankAccounts;
-        
 
-
-        /*public void WithdrawFromAccount(int fromAccountNumber, double amount, string Userpassword)
-        {
-
-
-            var fromAccount = GetBankAccount(fromAccountNumber);
-            if (fromAccount.Balance == null || fromAccount.Balance < 0 && password == Userpassword)
-            {
-                Console.WriteLine("Insufficient fund on selected Account.");
-                return;
-            }
-            fromAccount.Balance = amount;
-
-            Console.WriteLine($"Withdraw request successfull. Please take your money.");
-            Console.WriteLine($"Remaining Balance for {fromAccount}: {fromAccount.Balance}");
-        }*/
-
+        public static List<Transfer> transactctionHistory = new List<Transfer>();
+        ExchangeRateManager exchange = new ExchangeRateManager();
+        private double amount { get; set; }
+        private string Currency { get; set; }
+        private int fromAccountNumber { get; set; }
+        private int toAccountNumber { get; set; }
+        private DateTime transactionTime { get; set; }
 
 
         /// <summary>
@@ -40,44 +31,70 @@ namespace Syntax_Squad
         public void TransferBetweenOwnAccounts(User user)
         {
             Console.Clear();
-            int fromAccountNumber;
-            int toAccountNumber;
-            double amount;
+
             List<int> loggedInUserAccountNumber = loggedInAccountList(user);
-                        
+
             try
             {
 
-                Console.WriteLine("Insert Account number to transfer from: ");
+                Console.Write("\n\tInsert Account number to transfer from: ");
                 fromAccountNumber = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Insert Account number to transfer to: ");
+                Console.Write("\n\tInsert Account number to transfer to: ");
                 toAccountNumber = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Enter the amount you wish to transfer: ");
+                Console.Write("\n\tEnter the amount you wish to transfer: ");
                 amount = double.Parse(Console.ReadLine());
 
                 var fromAccount = GetBankAccount(fromAccountNumber);
                 var toAccount = GetBankAccount(toAccountNumber);
-
-               
-                if (fromAccount.Balance > amount && loggedInUserAccountNumber.Contains(fromAccountNumber))
+                if (user.TransferLimit >= amount || user.TransferLimit == 0)
                 {
-                    fromAccount.Balance -= amount;
-                    toAccount.Balance += amount;
-                    Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
-                    Console.WriteLine($"New balance for {toAccount.AccountName}: {toAccount.Balance}");
+                    if (fromAccount.Balance > amount && loggedInUserAccountNumber.Contains(fromAccountNumber))
+                    {
+                        if (fromAccount.Currency != toAccount.Currency)
+                        {
 
+                            if (exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
+                            {
+                                var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
+                                var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
+                                var convertedAmount = amount * (1 / fromRate) * toRate;
+                                fromAccount.Balance -= amount;
+                                toAccount.Balance += convertedAmount;
+                                transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
+                                Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                                Console.WriteLine($"\tNew balance for {toAccount.AccountName}: {toAccount.Balance} {toAccount.Currency}");
+                            }
+                        }
+
+                        else
+                        {
+                            fromAccount.Balance -= amount;
+                            toAccount.Balance += amount;
+                            Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                            Console.WriteLine($"\tNew balance for {toAccount.AccountName}: {toAccount.Balance} {toAccount.Currency}");
+                            transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
+
+                        }
+                    }
+
+
+                }
+
+                else
+                {
+                    Console.WriteLine($"\tYou have exceeded your transaction limit.");
+                    Console.ReadKey();
+                    return;
                 }
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Invalid input, please try again.");
+                Console.WriteLine("\tInvalid input, please try again.");
             }
-
-
-
+            Console.ReadKey();
 
         }
 
@@ -93,60 +110,98 @@ namespace Syntax_Squad
             int toAccountNumber;
             double amount;
             List<int> loggedInUserAccountNumber = loggedInAccountList(user);
-           
+
 
             try
             {
-                Console.WriteLine("Insert Account number to transfer from: ");
+                Console.Write("\n\tInsert Account number to transfer from: ");
                 fromAccountNumber = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Insert Account number to transfer to: ");
+                Console.Write("\n\tInsert Account number to transfer to: ");
                 toAccountNumber = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Enter the amount you wish to transfer: ");
-                amount = double.Parse(Console.ReadLine());
-
-                Console.WriteLine("Please enter your Password to confirm the transaction:");
-                string password = Console.ReadLine();
 
                 var fromAccount = GetBankAccount(fromAccountNumber);
                 var toAccount = GetBankAccount(toAccountNumber);
 
-            if (fromAccount == null || toAccount == null || password != user.Password) // fungerar verkligen detta?????
-            {
-                Console.WriteLine("Invalid account number.");
-                return;
-            }
-
-            if (fromAccount.Balance < amount)
-            {
-                Console.WriteLine("Insufficient funds.");
-                return;
-            }
-
-            if (fromAccount != null && toAccount != null && password == user.Password)
-            {
-                fromAccount.Balance -= amount;
-                toAccount.Balance += amount;
-                Console.WriteLine($"Transfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance}");
-
+                if (fromAccount == null || toAccount == null)
+                {
+                    Console.WriteLine("\tInvalid account number.");
+                    Console.ReadKey();
+                    return;
                 }
+
+                Console.Write("\n\tPlease enter your Password to confirm the transaction:");
+                string password = Console.ReadLine();
+                if (password != user.Password)
+                {
+                    Console.WriteLine("\tWrong password");
+                    Console.ReadKey();
+                    return;
+                }
+
+
+                Console.Write("\n\tEnter the amount you wish to transfer: ");
+                amount = double.Parse(Console.ReadLine());
+
+
+                if (fromAccount.Balance < amount)
+                {
+                    Console.WriteLine("\tInsufficient funds.");
+                    return;
+                }
+                if (user.TransferLimit >= amount || user.TransferLimit == 0)
+                {
+                    if (fromAccount.Balance > amount && password == user.Password)
+                    {
+                        if (fromAccount.Currency != toAccount.Currency)
+                        {
+                            ExchangeRateManager exchange = new ExchangeRateManager();
+                            if (exchange.exchangeRates.ContainsKey(fromAccount.Currency) && exchange.exchangeRates.ContainsKey(toAccount.Currency))
+                            {
+                                var fromRate = Convert.ToDouble(exchange.exchangeRates[fromAccount.Currency]);
+                                var toRate = Convert.ToDouble(exchange.exchangeRates[toAccount.Currency]);
+                                var convertedAmount = amount * (1 / fromRate) * toRate;
+                                fromAccount.Balance -= amount;
+                                toAccount.Balance += convertedAmount;
+                                transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
+                                Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                                Console.ReadKey();
+
+                            }
+                        }
+                        else
+                        {
+                            fromAccount.Balance -= amount;
+                            toAccount.Balance += amount;
+                            Console.WriteLine($"\tTransfer successful. New balance for {fromAccount.AccountName}: {fromAccount.Balance} {fromAccount.Currency}");
+                            transferHistory(fromAccountNumber, toAccountNumber, Currency, amount);
+
+                        }
+                    }
+                   
+                }
+                else
+                {
+                    Console.WriteLine($"\tYou have exceeded your transaction limit.");
+                    Console.ReadKey();
+                    return;
+                }
+
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine("\tInvalid input, please try again.");
             }
+            Console.ReadKey();
 
-            
 
 
         }
 
-
         public BankAccount GetBankAccount(int AccountNumber)
         {
             return BankAccount.bankAccounts.Find(a => a.AccountNumber == AccountNumber);
-                       
+
         }
 
         public List<int> loggedInAccountList(User user)
@@ -157,12 +212,70 @@ namespace Syntax_Squad
             {
                 if (account.Owner == user.Name)
                 {
-                    Console.WriteLine($"Account Name: {account.AccountName}");
-                    Console.WriteLine($"Account number: {account.AccountNumber} Balance: {account.Balance}{account.Currency}");
+                    Console.WriteLine($"\tAccount Name: {account.AccountName}");
+                    Console.WriteLine($"\tAccount number: {account.AccountNumber} Balance: {account.Balance}{account.Currency}");
                     loggedInUserAccountNumber.Add(account.AccountNumber);
                 }
             }
             return loggedInUserAccountNumber;
+        }
+
+        public static void PrintTransferHistoryAdmin()
+        {
+           
+            Console.WriteLine("\tTransaction History:");
+
+            foreach (var transaction in transactctionHistory)
+            {
+                Console.WriteLine($"\tTransaction: From {transaction.fromAccountNumber} to {transaction.toAccountNumber} - Amount: {transaction.amount} {transaction.Currency} - Time: {transaction.transactionTime}");
+            }
+
+            Console.WriteLine($"\tPress enter to return to menu");
+           
+
+            Console.ReadKey();
+        }
+
+        public static void PrintTransactionHistoryUser(User user)
+        {
+            Console.Clear();
+            foreach (var account in BankAccount.bankAccounts)
+            {
+                if (account.Owner == user.Name)
+                {
+                    foreach (var transaction in transactctionHistory)
+                    {
+                        if(transaction.fromAccountNumber == account.AccountNumber || transaction.toAccountNumber == account.AccountNumber)
+                        {
+                            Console.WriteLine($"\tTransaction: From {transaction.fromAccountNumber} to {transaction.toAccountNumber} - " +
+                                $"Amount: {transaction.amount} {transaction.Currency} - Time: {transaction.transactionTime}");
+                        }
+                                            
+                    }
+                    break;
+                }
+            }
+
+            Console.WriteLine($"\tPress enter to return to menu");
+
+            
+
+            Console.ReadKey();
+
+        }
+
+        public static void transferHistory(int fromAccount, int toAccount, string currency, double Amount)
+        {
+            Transfer transactionHistory = new Transfer
+            {
+                amount = Amount,
+                Currency = currency,
+                fromAccountNumber = fromAccount,
+                toAccountNumber = toAccount,
+                transactionTime = DateTime.Now
+            };
+            transactctionHistory.Add(transactionHistory);
+
         }
 
     }

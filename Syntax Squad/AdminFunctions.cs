@@ -13,52 +13,55 @@ namespace Syntax_Squad
         /// AddUser function makes it possible for admins to add more users in the program
         /// </summary>
         /// <param name="user"></param>
+
         public static void AddUser(User user)
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Add new user");
-            do
+            Console.WriteLine("\tAdd new user");
+            while (true)
             {
-                Console.Write("Name of new user: ");
-                string newName = Console.ReadLine();
+                string newName, newPassword;
 
-                Console.Write("Password: ");
-                string newPassword = Console.ReadLine();
-
-                Console.Write("User ID: ");
-                int newUserId;
-
-                while (!int.TryParse(Console.ReadLine(), out newUserId))
+                while (true)
                 {
-                    Console.WriteLine("Invalid input, has to be valid integer for user ID");
-                    Console.WriteLine("User ID: ");
+                    Console.Write("\tName of new user: ");
+                    newName = Console.ReadLine();
+
+                    Console.Write("\tPassword: ");
+                    newPassword = Console.ReadLine();
+
+                    if (!string.IsNullOrWhiteSpace(newName) && !string.IsNullOrWhiteSpace(newPassword))
+                    {
+                        break;
+                    }
+                    Console.WriteLine("\tName and password cannot be empty");
                 }
 
+                Console.Write("\tUser ID: ");
+                int newUserId;
 
-                if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newPassword))
+                if (!int.TryParse(Console.ReadLine(), out newUserId))
                 {
-                    Console.WriteLine("Name and password cannot be empty");
+                    Console.WriteLine("\tInvalid input, use numbers to add User ID");
+
                 }
                 else
                 {
-
                     RegularUser newUser = new RegularUser(newName, newPassword, newUserId);
                     User.AllTheUsers.Add(newUser);
-
-                    Console.WriteLine($"New user {newName} was added by {user.Name}");
-
-                    Console.WriteLine("Do you wish to add more users? (y/n)");
+                    Console.WriteLine($"\tNew user {newName} with ID: {newUserId} was added by {user.Name}");
+                    Console.WriteLine("\tDo you wish to add more users? (y/n)");
                     string addMore = Console.ReadLine();
 
                     if (addMore.ToLower() != "y")
                     {
-
                         break;
-                    }
 
+                    }
                 }
 
-            } while (true);
+            }
 
 
         }
@@ -67,27 +70,74 @@ namespace Syntax_Squad
         /// </summary>
         public static void ShowCurrentUsers()
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             while (true)
             {
-                Console.WriteLine("Press enter to show current users in the bank or type exit to return to menu:");
+                foreach (var user in User.AllTheUsers)
+                {
+                    Console.WriteLine($"\tUser ID: {user.UserId} - User Name: {user.Name}");
+
+                }
+
+                Console.WriteLine("\tPress enter to show current users in the bank or type exit to return to menu:");
                 string userInput = Console.ReadLine();
 
-                if(userInput.ToLower() == "exit")
+                if (userInput.ToLower() == "exit")
                 {
-                    Console.WriteLine("Returning to menu..");
+                    Console.WriteLine("\tReturning to menu..");
                     break;
                 }
 
-                foreach (var user in User.AllTheUsers)
-                {
-                    Console.WriteLine($"User ID: {user.UserId} - User Name: {user.Name}");
-
-                }
                 
             }
-            
+
 
         }
+        /// <summary>
+        /// Method that lets admin remove users
+        /// </summary>
+        public static void RemoveUser()
+        {
+            Console.Clear();
+            Console.ForegroundColor= ConsoleColor.Green;
+            Console.WriteLine("Remove User");
+
+            {
+                while (true)
+                {
+                    Console.Write("Enter User ID to remove: ");
+                    int userIdRemove;
+
+                    if(!int.TryParse(Console.ReadLine(), out userIdRemove))
+                    {
+                        Console.WriteLine("Invalid input. Please enter a valid User ID");
+                    }
+                    else
+                    {
+                        User userToRemove = User.AllTheUsers.FirstOrDefault(x => x.UserId == userIdRemove);
+
+                        if (userToRemove != null)
+                        {
+                            User.AllTheUsers.Remove(userToRemove);
+                            Console.WriteLine($"User with ID {userIdRemove} removed successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"User with ID {userIdRemove} not found.");
+                        }
+                        Console.WriteLine("Do you wish to remove more users? Y/N");
+                        string removeMore = Console.ReadLine();
+
+                        if (removeMore.ToLower() != "y")
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+       
     }
 }

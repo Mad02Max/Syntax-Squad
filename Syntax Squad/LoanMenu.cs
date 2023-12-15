@@ -30,7 +30,7 @@ namespace Syntax_Squad
                         Loan.TakeOutLoan(user);
                         break;
                     case "2":
-                        Loan.SeeLoans(user);
+                        Loan.SeeUserLoans(user);
                         break;
                     case "3":
                         run = false;
