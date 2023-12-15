@@ -14,12 +14,16 @@
 
 I'm excited to present our group project – a small-scale bank application developed in C#. Our aim is to create a user-friendly and efficient system that facilitates basic banking operations. Our application will include features such as account creation, fund transfers, balance inquiries,take out a loan and transaction history.
 
-## **Features** 
+## **Features** <a id="features"></a>
 
-* Customer login - Access your account with your username and password
-  
-* Admin: Gain access to specific administrative functionalities
-  
+Customer login - Access your account with your username and password
+
+****
+
+Admin - Gain access to specific administrative functionalities
+
+****
+
 Customer functionalities:
 
 - Create new accounts - Create a new personalized bank account 
@@ -32,6 +36,8 @@ Customer functionalities:
 
 - Loan request - Request a loan with a set interest rate
 
+****
+
 Admin functionalities: 
 
 - User management - create new user accounts 
@@ -39,6 +45,7 @@ Admin functionalities: 
 - Adjust exchange rates
 
 - Full overview of users, loans and transactions made
+
 
 ## **Code Structure**
 
