@@ -49,6 +49,10 @@ Admin functionalities: 
 
 ## **UML**
 
+
+[UML Syntax Squad.pdf](https://github.com/Mad02Max/Syntax-Squad/files/13685195/UML.Syntax.Squad.pdf)
+
+
 ## **Classes**
 
 - Loan:This class is responsible for managing all loan-related transactions that users may seek to initiate. 
