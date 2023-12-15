@@ -16,6 +16,7 @@ namespace Syntax_Squad
 
         public static void AddUser(User user)
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\tAdd new user");
             while (true)
@@ -69,6 +70,7 @@ namespace Syntax_Squad
         /// </summary>
         public static void ShowCurrentUsers()
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             while (true)
             {
@@ -97,6 +99,7 @@ namespace Syntax_Squad
         /// </summary>
         public static void RemoveUser()
         {
+            Console.Clear();
             Console.ForegroundColor= ConsoleColor.Green;
             Console.WriteLine("Remove User");
 

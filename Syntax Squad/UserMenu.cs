@@ -9,10 +9,8 @@ namespace Syntax_Squad
     //Noah SUT23
     public class UserMenu : Menu
     {
-
         public override void ShowMenu(User user)
         {
-
             TransferMenu transferMenu = new TransferMenu();
             CreateAccount newAccount = new CreateAccount();
             LoanMenu loanMenu = new LoanMenu();
