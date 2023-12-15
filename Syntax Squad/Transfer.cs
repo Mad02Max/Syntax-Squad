@@ -79,11 +79,14 @@ namespace Syntax_Squad
                         }
                     }
 
-                    else
-                    {
-                        Console.WriteLine("You have exceeded your transaction limit.");
-                    }
 
+                }
+
+                else
+                {
+                    Console.WriteLine($"\tYou have exceeded your transaction limit.");
+                    Console.ReadKey();
+                    return;
                 }
 
             }
@@ -175,10 +178,13 @@ namespace Syntax_Squad
 
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("You have exceeded your transaction limit.");
-                    }
+                   
+                }
+                else
+                {
+                    Console.WriteLine($"\tYou have exceeded your transaction limit.");
+                    Console.ReadKey();
+                    return;
                 }
 
             }
