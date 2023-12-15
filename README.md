@@ -36,13 +36,13 @@ I'm excited to present our group project – a small-scale bank application deve
 
 ## **Code Structure**
 
-# *The project’s structure is built with the help of Single responsibility (SOLID). Each class has their own responsibility, focusing on one aspect of the application's functionality. For example, we have separate classes for account management, transaction handling, and loans..*
+ The project’s structure is built with the help of Single responsibility (SOLID). Each class has their own responsibility, focusing on one aspect of the application's functionality. For example, we have separate classes for account management, transaction handling, and loans.
 
 ## **UML**
 
 ## **Classes**
 
-# *- Loan:This class is responsible for managing all loan-related transactions that users may seek to initiate. 
+- Loan:This class is responsible for managing all loan-related transactions that users may seek to initiate. 
 - CreateAccount:This class has the responsibility for creating any new bank account that the user might want to make.
 - Menu: Main Class for the several menus used throughout the application.
 - Transfer: This class facilitates the transfer of balances between a user's personal accounts as well as from the user to other accounts.
@@ -55,10 +55,11 @@ I'm excited to present our group project – a small-scale bank application deve
 
 ## **Collaboration** 
 
-# Thanks to the collective efforts of each team member throughout the project, we hope that you enjoy our application. 
-Best regards,Mad02Max
-Sim0h
-NoahStener
-Dericay
+Thanks to the collective efforts of each team member throughout the project, we hope that you enjoy our application. 
+Best regards,
+- Mad02Max
+- Sim0h
+- NoahStener
+- Dericay
 
 
