@@ -11,7 +11,6 @@ namespace Syntax_Squad
     {
         /// <summary>
         /// AddUser function makes it possible for admins to add more users in the program
-        /// ShowCurrentUsers function loops through AllTheUser list and prints them out
         /// </summary>
         /// <param name="user"></param>
 
@@ -135,5 +134,7 @@ namespace Syntax_Squad
                 }
             }
         }
+
+       
     }
 }

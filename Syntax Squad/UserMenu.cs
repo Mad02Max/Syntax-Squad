@@ -9,13 +9,14 @@ namespace Syntax_Squad
     //Noah SUT23
     public class UserMenu : Menu
     {
-       
+
         public override void ShowMenu(User user)
         {
 
             TransferMenu transferMenu = new TransferMenu();
             CreateAccount newAccount = new CreateAccount();
             LoanMenu loanMenu = new LoanMenu();
+            SettingsMenu settingsMenu = new SettingsMenu();
             ACIIART Art = new ACIIART();
             Console.ForegroundColor = ConsoleColor.Yellow;
 
@@ -25,7 +26,7 @@ namespace Syntax_Squad
                 Console.Clear();
                 Art.PrintArt();
                 Console.WriteLine("\t---|| User Menu ||---");
-                Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Logout");
+                Console.WriteLine("\t1: See Accounts \n\t2: Transfer Money \n\t3: Create Account \n\t4: Loan \n\t5: Settings \n\t6: Logout");
 
                 string userInput = Console.ReadLine();
 
@@ -44,6 +45,9 @@ namespace Syntax_Squad
                         loanMenu.ShowMenu(user);
                         break;
                     case "5":
+                        settingsMenu.ShowMenu(user);
+                        break;
+                    case "6":
                         user.IsLoggedIn = false;
                         validChoice = false;
                         break;
@@ -56,6 +60,6 @@ namespace Syntax_Squad
 
             } while (validChoice);
         }
-       
+
     }
 }

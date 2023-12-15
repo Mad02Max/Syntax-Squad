@@ -14,6 +14,7 @@ namespace Syntax_Squad
             UserId = userId;
             Name = name;
             Password = password;
+            TransferLimit = 0;
         }
         
     }
