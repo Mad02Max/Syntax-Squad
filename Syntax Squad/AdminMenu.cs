@@ -22,7 +22,7 @@ namespace Syntax_Squad
                 Console.Clear();
                 Art.PrintArt();
                 Console.WriteLine("\t---|| Admin Menu ||---");
-                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Remove User \n\t5: Transfer history \n\t6: Logout");
+                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Remove User \n\t5: Transfer history \n\t6: Loan history \n\t7: Logout");
 
 
                 string userInput = Console.ReadLine();
@@ -44,6 +44,8 @@ namespace Syntax_Squad
                         Transfer.PrintTransferHistoryAdmin();
                         break;
                     case "6":
+
+                    case "7":
                         user.IsLoggedIn = false;
                         validChoice = false;
                         break;
