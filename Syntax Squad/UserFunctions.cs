@@ -73,7 +73,7 @@ namespace Syntax_Squad
         /// <param name="user"></param>
         public static void CloseAccount(User user)
         {
-
+            Console.Clear();
             Console.WriteLine("\n\tYour current bank accounts:");
             foreach (var account in BankAccount.bankAccounts)
             {
