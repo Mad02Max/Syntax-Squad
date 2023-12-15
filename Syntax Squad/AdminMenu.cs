@@ -10,6 +10,7 @@ namespace Syntax_Squad
     public class AdminMenu : Menu
     {
         ExchangeRateManager manager = new ExchangeRateManager();
+
         public override void ShowMenu(User user)
         {
 
@@ -21,7 +22,7 @@ namespace Syntax_Squad
                 Console.Clear();
                 Art.PrintArt();
                 Console.WriteLine("\t---|| Admin Menu ||---");
-                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Remove User \n\t5: Logout");
+                Console.WriteLine("\t1: Add User \n\t2: Currency Value \n\t3: Show Users \n\t4: Remove User \n\t5: Transfer history \n\t6: Logout");
 
 
                 string userInput = Console.ReadLine();
@@ -40,11 +41,13 @@ namespace Syntax_Squad
                         AdminFunctions.RemoveUser();
                         break;
                     case "5":
+                        Transfer.PrintTransferHistoryAdmin();
+                        break;
+                    case "6":
                         user.IsLoggedIn = false;
                         validChoice = false;
                         break;
                     default:
-                        Console.WriteLine("Wrong input, choose between one of the menu options");
                         break;
 
                 }
