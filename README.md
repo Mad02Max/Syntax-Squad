@@ -19,9 +19,11 @@
 
 ## **Features** 
 
-- Customer login - Access your account with your username and passwordAdmin
-- Gain access to specific administrative functionalitiesCustomer functionalities:
-- Create new accounts - Create a new personalized bank account 
+* Customer login - Access your account with your username and passwordAdmin
+  
+* Gain access to specific administrative functionalitiesCustomer functionalities:
+  
+* Create new accounts - Create a new personalized bank account 
 
 * Transfer  - Move money between / to accounts
 
@@ -33,7 +35,7 @@
 
 * Adjust exchange rates
 
-* Full overview of users, loans and transactions made**********
+* Full overview of users, loans and transactions made
 
 ## **Code Structure**
 
