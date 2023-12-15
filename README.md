@@ -1,7 +1,7 @@
 # Syntax Squad
 # **Table of Contents**
 
-# **- Introduction
+# Introduction
 
 - Features 
 
@@ -11,15 +11,17 @@
 
 - Classes
 
-- Collaboration **
+- Collaboration 
 
 ## **Introduction**
 
-# *I'm excited to present our group project – a small-scale bank application developed in C#. Our aim is to create a user-friendly and efficient system that facilitates basic banking operations. Our application will include features such as account creation, fund transfers, balance inquiries,take out a loan and transaction history.*
+# I'm excited to present our group project – a small-scale bank application developed in C#. Our aim is to create a user-friendly and efficient system that facilitates basic banking operations. Our application will include features such as account creation, fund transfers, balance inquiries,take out a loan and transaction history.
 
 ## **Features** 
 
-# *Customer login - Access your account with your username and passwordAdmin - Gain access to specific administrative functionalitiesCustomer functionalities:* Create new accounts - Create a new personalized bank account 
+- Customer login - Access your account with your username and passwordAdmin
+- Gain access to specific administrative functionalitiesCustomer functionalities:
+- Create new accounts - Create a new personalized bank account 
 
 * Transfer  - Move money between / to accounts
 
