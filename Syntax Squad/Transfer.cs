@@ -20,7 +20,7 @@ namespace Syntax_Squad
         private int fromAccountNumber { get; set; }
         private int toAccountNumber { get; set; }
         private DateTime transactionTime { get; set; }
-        UserFunctions userFunctions = new UserFunctions();
+        
 
         /// <summary>
         /// Metod för överföring emellan egna konton. 
@@ -48,7 +48,7 @@ namespace Syntax_Squad
 
                 var fromAccount = GetBankAccount(fromAccountNumber);
                 var toAccount = GetBankAccount(toAccountNumber);
-                if (user.TransferLimit >= amount)
+                if (user.TransferLimit >= amount || user.TransferLimit == 0)
                 {
                     if (fromAccount.Balance > amount && loggedInUserAccountNumber.Contains(fromAccountNumber))
                     {
@@ -78,6 +78,11 @@ namespace Syntax_Squad
                         }
                     }
 
+                    else
+                    {
+                        Console.WriteLine("You have exceeded your transaction limit.");
+                    }
+
                 }
 
             }
@@ -86,8 +91,6 @@ namespace Syntax_Squad
                 Console.WriteLine("\tInvalid input, please try again.");
             }
             Console.ReadKey();
-
-
 
         }
 
@@ -143,7 +146,7 @@ namespace Syntax_Squad
                         Console.WriteLine("\tInsufficient funds.");
                         return;
                     }
-                    if (user.TransferLimit >= amount)
+                    if (user.TransferLimit >= amount || user.TransferLimit == 0)
                     {
                         if (fromAccount.Balance > amount && password == user.Password)
                         {
@@ -163,6 +166,10 @@ namespace Syntax_Squad
                                     break;
                                 }
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine("You have exceeded your transaction limit.");
                         }
                     }
 
