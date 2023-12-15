@@ -18,7 +18,7 @@ namespace Syntax_Squad
         private int accountNumber;
         private int userId;
         private string accountCurrency;
-        private double accountBalance = 0;
+        private double accountBalance = 10000;
         private string accountOwner;
 
         private BankAccount createdAccount;
