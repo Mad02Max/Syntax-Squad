@@ -4,13 +4,7 @@
     {
         static void Main(string[] args)
         { 
-            User.ExistingUsers();
-            BankAccount.ExistingBankAccounts();
-
-            Login login = new Login();
-            login.LogIn();
-
-            Console.ReadKey();
+            Bank.Start();
         }
 
 
