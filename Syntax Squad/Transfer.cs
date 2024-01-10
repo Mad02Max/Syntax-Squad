@@ -229,7 +229,10 @@ namespace Syntax_Squad
             {
                 Console.WriteLine($"\tTransaction: From {transaction.fromAccountNumber} to {transaction.toAccountNumber} - Amount: {transaction.amount} {transaction.Currency} - Time: {transaction.transactionTime}");
             }
+
             Console.WriteLine($"\tPress enter to return to menu");
+           
+
             Console.ReadKey();
         }
 
@@ -252,7 +255,11 @@ namespace Syntax_Squad
                     break;
                 }
             }
+
             Console.WriteLine($"\tPress enter to return to menu");
+
+            
+
             Console.ReadKey();
 
         }

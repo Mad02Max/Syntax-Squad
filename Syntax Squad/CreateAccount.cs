@@ -14,7 +14,7 @@ namespace Syntax_Squad
     {
         private string Name { get; set; }
         private string accType { get; set; }
-        private int accountID { get; set; }
+        private int userID { get; set; }
         private int accNumber { get; set; }
 
         private string accountName;
@@ -50,7 +50,7 @@ namespace Syntax_Squad
                     $"\n Are you sure this is the correct? Y/N");
                 string correct = Console.ReadLine();
 
-                if(correct.ToLower() == "y" || correct.ToLower() == "yes")
+                if (correct.ToLower() == "y" || correct.ToLower() == "yes")
                 {
                     CreateNewAccount();
                     AllNewAccounts(accountName, accountType, userId, accountNumber);
@@ -64,7 +64,7 @@ namespace Syntax_Squad
         /// </summary>
         private void CreateNewAccount()
         {
-            createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner,userId, accountCurrency, accountBalance);
+            createdAccount = new BankAccount(accountName, accountType, accountNumber, accountOwner, userId, accountCurrency, accountBalance);
             BankAccount.bankAccounts.Add(createdAccount);
         }
 
@@ -100,7 +100,7 @@ namespace Syntax_Squad
                                 return accountCurrency;
                             case 3:
                                 accountCurrency = "EUR";
-                                return accountCurrency;                           
+                                return accountCurrency;
                         }
                     }
                 }
@@ -139,7 +139,7 @@ namespace Syntax_Squad
         private string AccountName()
         {
             bool chooseName = true;
-            
+
             while (chooseName)
             {
                 Console.Clear();
@@ -159,7 +159,7 @@ namespace Syntax_Squad
             }
             return accountName;
         }
-        
+
         /// <summary>
         /// This methods asks the user to choose what type of account they want this bankaccount to be.
         /// </summary>
@@ -168,7 +168,7 @@ namespace Syntax_Squad
         {
             int accType;
             bool chooseType = true;
-            
+
             while (chooseType)
             {
                 Console.Clear();
@@ -199,17 +199,33 @@ namespace Syntax_Squad
                                 return accountType;
                         }
                     }
-                }   else Console.WriteLine("That is not a valid input");
+                }
+                else Console.WriteLine("That is not a valid input");
             }
             return accountType;
         }
-        public static void AllNewAccounts(string Name,string accountType, int accountId, int toAcc)
+
+        public static void AdminPrintNewAccounts()
+        {
+            Console.Clear();
+            foreach (CreateAccount account in newAccounts)
+            {
+                Console.WriteLine($"\n Bank account name: {account.Name}" +
+                    $"\n UserId: {account.userID}" +
+                    $"\n With currency type: {account.accType}" +
+                    $"\n Account Number: {account.accNumber}");
+            }
+            Console.ReadKey();
+        }
+
+
+        public static void AllNewAccounts(string Name, string accountType, int userId, int toAcc)
         {
             CreateAccount newAccount = new CreateAccount
             {
                 Name = Name,
                 accType = accountType,
-                accountID = accountId,
+                userID = userId,
                 accNumber = toAcc
             };
             newAccounts.Add(newAccount);
