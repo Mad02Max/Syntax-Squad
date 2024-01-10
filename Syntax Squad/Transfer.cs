@@ -50,7 +50,7 @@ namespace Syntax_Squad
                 var toAccount = GetBankAccount(toAccountNumber);
                 if (user.TransferLimit >= amount || user.TransferLimit == 0)
                 {
-                    if (fromAccount.Balance > amount && loggedInUserAccountNumber.Contains(fromAccountNumber))
+                    if (fromAccount.Balance >= amount && loggedInUserAccountNumber.Contains(fromAccountNumber))
                     {
                         if (fromAccount.Currency != toAccount.Currency)
                         {
@@ -79,11 +79,14 @@ namespace Syntax_Squad
                         }
                     }
 
-                    else
-                    {
-                        Console.WriteLine("You have exceeded your transaction limit.");
-                    }
 
+                }
+
+                else
+                {
+                    Console.WriteLine($"\tYou have exceeded your transaction limit.");
+                    Console.ReadKey();
+                    return;
                 }
 
             }
@@ -148,7 +151,7 @@ namespace Syntax_Squad
                 }
                 if (user.TransferLimit >= amount || user.TransferLimit == 0)
                 {
-                    if (fromAccount.Balance > amount && password == user.Password)
+                    if (fromAccount.Balance >= amount && password == user.Password)
                     {
                         if (fromAccount.Currency != toAccount.Currency)
                         {
@@ -175,10 +178,13 @@ namespace Syntax_Squad
 
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("You have exceeded your transaction limit.");
-                    }
+                   
+                }
+                else
+                {
+                    Console.WriteLine($"\tYou have exceeded your transaction limit.");
+                    Console.ReadKey();
+                    return;
                 }
 
             }
