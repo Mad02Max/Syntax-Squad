@@ -60,7 +60,7 @@ namespace Syntax_Squad
                     var toRate = Convert.ToDouble(exchangeRate.exchangeRates[toAccount.Currency]);
                     var convertedLoan = loanSize * toRate;
                     toAccount.Balance += convertedLoan;
-                    Console.WriteLine($"You have now taken a loan of {convertedAmount}");
+                    Console.WriteLine($"You have now taken a loan of {loanSize}");
                     AllLoanes(loanSize, user.UserId, toAcc);
                 }
             }
